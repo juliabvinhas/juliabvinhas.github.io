@@ -1221,9 +1221,9 @@ menuBtn.addEventListener("click",()=>setMenu(!mainNav.classList.contains("open")
 mainNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
 addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
 
-/* el botón flotante aparece al hacer scroll y se oculta al llegar al contacto */
+/* el botón flotante está siempre visible y se oculta al llegar al contacto */
 const fabEl=document.getElementById("fab"); let nearFooter=false;
-const fabUpdate=()=>fabEl.classList.toggle("away",nearFooter||scrollY<320);
+const fabUpdate=()=>fabEl.classList.toggle("away",nearFooter);
 addEventListener("scroll",fabUpdate,{passive:true}); fabUpdate();
 new IntersectionObserver(es=>es.forEach(en=>{nearFooter=en.isIntersecting;fabUpdate();}),{threshold:0.15}).observe(document.getElementById("contacto"));
 
