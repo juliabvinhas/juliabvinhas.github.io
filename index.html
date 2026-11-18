@@ -1,0 +1,1298 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Julia Besada — Product Designer & Builder. SaaS B2B, flujos complejos e IA.">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>Julia Besada · Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: rejilla de 12 columnas. Paleta Noche (negro + azul). Casos con portada grande a todo el ancho, cada una con su color; metadatos en mono. Bilingüe ES/EN. */
+:root{
+  color-scheme:dark;
+  --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#A9ABAF; --line:#2A2C30; --soft:#1C1D20; --ok:#3CCB74;
+  --block:#15161A; --block-ink:#F2F2EF; --accent:#9DB4FF; --accent-ink:#0E0F11; --hl:#9DB4FF;
+  --c-cobalt:#3D52E0; --c-lilac:#A99CF0; --c-orange:#E36A3A;
+  --sans:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --wrap:1240px; --read:640px;
+}
+/* Paleta Noche: look oscuro cerrado, independiente del tema del sistema */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:var(--accent);color:var(--accent-ink)}
+:focus-visible{outline:1.5px solid var(--accent);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.025em;text-wrap:balance}
+.label{font:400 12px/1.5 var(--mono);letter-spacing:.02em;color:var(--muted)}
+.example{font:400 11px/1 var(--mono);color:var(--muted);border:1px dashed var(--line);padding:6px 8px;width:max-content;max-width:100%}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+.link{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--accent)}
+.link:hover{color:var(--accent)}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;background:var(--bg);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px}
+.logo{font-weight:500;text-decoration:none;font-size:16px;white-space:nowrap}
+.hdr-r{display:flex;align-items:center;gap:24px}
+nav.main{display:flex;gap:28px;font-size:15px;align-items:center}
+nav.main a{text-decoration:none;color:var(--muted)}
+nav.main a:hover{color:var(--accent)}
+.lang{display:flex;border:1px solid var(--line)}
+.lang button{background:none;border:0;color:var(--muted);font:500 12px var(--mono);padding:7px 10px;cursor:pointer}
+.lang button:hover{color:var(--ink)}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.menu-btn{display:none;align-items:center;gap:8px;background:none;border:1px solid var(--line);color:var(--ink);font:500 14px var(--sans);padding:7px 12px;cursor:pointer}
+.menu-btn:hover{border-color:var(--accent)}
+.menu-btn .bars{display:grid;gap:4px}
+.menu-btn .bars i{display:block;width:14px;height:1.5px;background:currentColor;transition:transform .2s ease}
+.menu-btn[aria-expanded="true"] .bars i:first-child{transform:translateY(2.75px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] .bars i:last-child{transform:translateY(-2.75px) rotate(-45deg)}
+.ask{font:500 14px var(--sans);background:var(--accent);color:var(--accent-ink);border:0;padding:9px 14px;cursor:pointer}
+.ask:hover{opacity:.85}
+
+/* hero */
+.band{--ink:var(--block-ink);--muted:color-mix(in srgb,var(--block-ink) 70%,transparent);--line:color-mix(in srgb,var(--block-ink) 25%,transparent);background:radial-gradient(55% 90% at 95% 0%, color-mix(in srgb,var(--accent) 16%,transparent), transparent 70%),var(--block);color:var(--ink);border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+.hero{padding-block:clamp(72px,12vw,160px) 72px;row-gap:48px}
+.hero h1{grid-column:1/10;font-size:clamp(38px,6vw,84px);line-height:1.02;font-weight:500}
+.hero h1 span{color:var(--hl)}
+.hero .meta{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--line);padding-top:20px}
+.hero .meta div{display:grid;gap:4px}
+.hero .meta strong{font-weight:400;font-size:15px}
+.status{display:inline-flex;align-items:center;gap:8px}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.hero .intro{grid-column:1/8;margin:0;font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:52ch}
+.hero .top{grid-column:1/-1}
+
+/* secciones */
+section.block{padding-block:72px}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--accent)}
+.sec-head h2{color:var(--accent);font-size:15px;font-weight:500;letter-spacing:0}
+
+/* portadas */
+.cover{--c:var(--c-cobalt);container-type:inline-size;aspect-ratio:16/8;max-width:100%;background:radial-gradient(55% 75% at 72% 22%,color-mix(in srgb,var(--c) 75%,transparent),transparent 70%),radial-gradient(45% 60% at 8% 100%,color-mix(in srgb,var(--c) 45%,transparent),transparent 70%),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 44px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 44px),#0A0B0F;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;padding-top:7%}
+.cover .screen{width:62%;aspect-ratio:16/10;background:#FFFFFF;display:grid;grid-template-columns:22% 1fr;box-shadow:0 30px 70px -20px rgba(0,0,0,.45);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cover .side{border-right:1px solid #E6E7ED;padding:12% 14%;display:grid;align-content:start;gap:7px}
+.cover .main{padding:7%;display:grid;align-content:start;gap:7px}
+.cover .bar{height:6px;background:#E6E7ED}
+.cover .bar.d{background:var(--c)}
+.cover .rowx{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+.cover .rowx div{height:34px;background:#F2F3F7}
+.cover.wide{aspect-ratio:21/9}
+.cover.fig{aspect-ratio:16/10;padding-top:8%}
+.cover.fig .screen{width:76%}
+
+
+/* pantallas redibujadas sin marca: marcos de navegador y móvil */
+.cover.comp{display:block;padding:0;position:relative}
+.browser{--tf:perspective(2400px) rotateY(9deg) rotateX(5deg) rotateZ(-1.5deg);transform:var(--tf);transform-origin:60% 40%;container-type:inline-size;position:absolute;left:6%;top:13%;width:70%;background:#17181C;border-radius:12px 12px 0 0;padding:0 5px;box-shadow:0 50px 90px -30px rgba(0,0,0,.65),inset 0 0 0 1px rgba(255,255,255,.09);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cover.fig .browser{left:4%;top:11%;width:80%}
+.browser::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.10),transparent 35%)}
+.work-card:hover .browser{transform:var(--tf) translateY(-2%)}
+.b-bar{display:flex;align-items:center;gap:1.6cqi;padding:1.1cqi 1cqi}
+.b-dots{display:flex;gap:.7cqi}.b-dots i{width:1.05cqi;height:1.05cqi;border-radius:50%;background:#55585F}
+.b-nav{display:flex;gap:1.2cqi;color:#7C7F88;font:500 1.6cqi/1 var(--sans)}
+.b-url{flex:1;max-width:46%;margin:0 auto;background:#26282E;border-radius:.8cqi;color:#A3A6AE;font:400 1.25cqi/1 var(--sans);padding:.75cqi 1.2cqi;text-align:center}
+.b-url::before{content:"";display:inline-block;width:.9cqi;height:1cqi;border:.18cqi solid #A3A6AE;border-radius:.25cqi;margin-right:.7cqi;vertical-align:-.1cqi}
+.mock{position:relative;background:#FFFFFF;color:#1D2130;font-family:var(--sans);letter-spacing:0;line-height:1.35;overflow:hidden}
+.m-app{display:grid;grid-template-columns:19% 1fr;min-height:62cqi}
+.m-side{background:#FFF7F2;border-right:1px solid #F1E6DE;padding:1.8cqi 1.2cqi;display:grid;gap:.35cqi;align-content:start}
+.m-logo{display:flex;align-items:center;gap:.9cqi;font:600 1.6cqi var(--sans);color:#14161F;padding:.4cqi .8cqi 1.6cqi}
+.m-logo i{width:2.4cqi;height:2.4cqi;border-radius:.6cqi;background:#1C1D22}
+.m-ni{display:flex;align-items:center;gap:.9cqi;font-size:1.3cqi;font-weight:500;color:#2A2D36;padding:.75cqi .9cqi;border-radius:.6cqi;white-space:nowrap}
+.m-ni i{width:1.5cqi;height:1.5cqi;border:.17cqi solid currentColor;border-radius:.4cqi;flex:none;opacity:.8}
+.m-ni.sub{padding-left:3.3cqi}.m-ni.sub i{display:none}
+.m-ni.on{background:#FFFFFF;color:#14161F;font-weight:600;box-shadow:0 .2cqi .6cqi rgba(60,40,20,.08)}
+.m-ni.on i{border-color:#14161F}
+.m-main{display:flex;flex-direction:column;min-width:0}
+.m-top{display:flex;align-items:center;justify-content:space-between;gap:1.2cqi;padding:1.3cqi 2.6cqi;border-bottom:1px solid #E7E8EE;font-size:1.35cqi;color:#5B6070}
+.m-search{font-size:1.3cqi;width:30%;background:#F3F4F7;border-radius:.7cqi;padding:.8cqi 1.2cqi;color:#9A9EAB}
+.m-av{display:flex;align-items:center;gap:1.2cqi}.m-av b{width:2.6cqi;height:2.6cqi;border-radius:50%;background:linear-gradient(135deg,#F2C6A8,#C9876A)}.m-av i{width:1.6cqi;height:1.6cqi;border:.17cqi solid #9A9EAB;border-radius:50%}
+.m-body{padding:2.4cqi 2.8cqi 4cqi;display:grid;gap:2cqi}
+.m-crumb{font-size:1.35cqi;color:#2A2D36;font-weight:500}
+.m-head{display:flex;justify-content:space-between;align-items:flex-start;gap:2cqi;padding:2cqi 2.8cqi 2.2cqi;border-bottom:1px solid #E7E8EE}
+.m-head .m-tl{gap:.9cqi}
+.m-h{display:flex;justify-content:space-between;align-items:center;gap:2cqi;flex-wrap:wrap}
+.m-tl{display:grid;gap:.7cqi}
+.m-title{font-size:3cqi;font-weight:600;color:#14161F;letter-spacing:-.02em}
+.m-meta{display:flex;gap:1.3cqi;align-items:center;font-size:1.4cqi;color:#5B6070}
+.m-pill{font-size:1.15cqi;font-weight:600;padding:.4cqi .9cqi;border-radius:.5cqi;background:#FDE8E8;color:#B42318;text-transform:uppercase;letter-spacing:.04em}
+.m-btns{display:flex;gap:.9cqi}
+.m-btn{font-size:1.4cqi;padding:1cqi 1.6cqi;border-radius:.7cqi;border:1px solid #D9DCE5;color:#1D2130;background:#FFFFFF;white-space:nowrap}
+.m-btn.p{background:#1C1D22;border-color:transparent;color:#FFFFFF}
+.m-btn.off{color:#B4B7C0;background:#F4F5F7;border-color:#E7E8EE}
+.m-alert{display:flex;justify-content:space-between;gap:2cqi;align-items:flex-start;background:#FEF3F2;border:1px solid #F7C1BC;border-radius:.8cqi;padding:1.4cqi 1.8cqi;font-size:1.4cqi;color:#7A271A}
+.m-alert b{font-weight:600}
+.m-alert u{text-decoration:none;color:#1C1D22;text-decoration:underline;text-underline-offset:.3cqi;font-weight:600;white-space:nowrap}
+.m-card{border:1px solid #E7E8EE;border-radius:1cqi;padding:2cqi;display:grid;gap:1.6cqi;box-shadow:0 .3cqi 1cqi -.5cqi rgba(20,22,31,.12)}
+.m-sec{font-size:1.8cqi;font-weight:600;color:#14161F}
+.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4cqi 2cqi}
+.m-f{display:grid;gap:.5cqi}
+.m-f span{font-size:1.2cqi;color:#5B6070}
+.m-f b{font-weight:400;font-size:1.45cqi;border:1px solid #D9DCE5;border-radius:.6cqi;padding:1cqi 1.2cqi;background:#FFFFFF;min-height:3.6cqi}
+.m-f.err b{border-color:#E5484D;background:#FFF5F5;color:#B42318}
+.m-info{background:#E3F1FB;box-shadow:0 .3cqi .9cqi -.3cqi rgba(20,60,100,.18);border-radius:.8cqi;padding:1.3cqi 1.8cqi;font-size:1.4cqi;color:#2F3A73}
+.m-q{font-size:2.1cqi;font-weight:600;color:#14161F}
+.m-radio{display:flex;gap:1.3cqi;align-items:flex-start;font-size:1.55cqi;font-weight:600;border:1px solid #E7E8EE;border-radius:.9cqi;padding:1.6cqi 1.8cqi}
+.m-radio.on{border-color:#1C1D22;background:#FAFAFB}
+.m-radio i{width:2cqi;height:2cqi;border-radius:50%;border:.3cqi solid #B8BCC8;flex:none;margin-top:.1cqi}
+.m-radio.on i{border-color:#1C1D22;background:radial-gradient(circle,#1C1D22 40%,#FFFFFF 46%)}
+.m-radio small{display:block;color:#5B6070;font-size:1.35cqi;font-weight:400;margin-top:.3cqi}
+.m-split{display:grid;grid-template-columns:24% 1fr;gap:2.4cqi}
+.m-nav{display:grid;gap:.4cqi;align-content:start}
+.m-nav span{font-size:1.4cqi;padding:1cqi 1.2cqi;border-radius:.6cqi;color:#5B6070}
+.m-nav span.on{background:color-mix(in srgb,var(--c) 11%,#FFFFFF);color:#14161F;font-weight:600}
+.m-tag{font-size:1.15cqi;font-weight:600;padding:.4cqi .9cqi;border-radius:.5cqi;background:#E7F6EC;color:#1E7A43}
+.m-sub{font-size:1.35cqi;color:#5B6070;margin-top:-.8cqi}
+.m-lf{display:grid;grid-template-columns:24% 52%;gap:1.4cqi 2.4cqi;align-items:center}
+.m-lf span{font-size:1.4cqi;color:#2A2D36;font-weight:500}.m-lf span em{color:#14A38B;font-style:normal}.m-lf span small{display:block;font-weight:400;font-size:1.15cqi;color:#5B6070}
+.m-lf b{font-weight:400;font-size:1.4cqi;border:1px solid #D9DCE5;border-radius:.6cqi;padding:1cqi 1.2cqi;color:#2A2D36}.m-lf b.dis{background:#F4F5F7;color:#8A8E9A}
+.m-tbl{border:1px solid #E7E8EE;border-radius:1cqi;overflow:hidden}
+.m-tbar{display:flex;align-items:center;justify-content:space-between;padding:1.2cqi 1.4cqi;border-bottom:1px solid #E7E8EE}
+.m-tr{display:grid;grid-template-columns:1.5fr 1.1fr .8fr .6fr .9fr 1.1fr;gap:1cqi;padding:1.45cqi 1.6cqi;white-space:nowrap;border-bottom:1px solid #EFF0F3;font-size:1.3cqi;color:#2A2D36;align-items:center}
+.m-tr:last-child{border-bottom:0}.m-tr.h{background:#FAFAFB;font-size:1.15cqi;font-weight:600;color:#5B6070;padding-block:1.1cqi}.m-tr b{font-weight:600}
+.st{justify-self:start;font-size:1.1cqi;font-weight:600;padding:.3cqi .8cqi;border-radius:.6cqi;border:1px solid}
+.st.reg{color:#1D5FD1;background:#EEF4FF;border-color:#BCD3FA}.st.ok{color:#1E7A43;background:#E9F7EE;border-color:#B5E2C4}.st.na{color:#5B6070;background:#F4F5F7;border-color:#DDDFE4}.st.err{color:#B42318;background:#FEF0EF;border-color:#F5C2BD}.st.pr{color:#1D5FD1;background:#EEF4FF;border-color:#BCD3FA}.st.dr{color:#A15C07;background:#FFF6E6;border-color:#F5D9A8}
+.m-toast{position:absolute;right:2.4cqi;bottom:2.4cqi;width:38%;background:#FFFFFF;border:1px solid #E7E8EE;border-radius:1cqi;box-shadow:0 1.5cqi 3cqi -1cqi rgba(20,22,31,.25);padding:1.6cqi 1.8cqi;display:grid;gap:.5cqi;font-size:1.25cqi;color:#5B6070}.m-toast b{color:#14161F;font-size:1.35cqi}
+.m-overlay{position:absolute;inset:0;background:rgba(20,22,31,.5);display:grid;place-items:start center;padding-top:9cqi}
+.m-modal{background:#FFFFFF;border-radius:1.2cqi;box-shadow:0 3cqi 6cqi rgba(0,0,0,.3);padding:3cqi;width:46%;display:grid;gap:1.4cqi}
+.m-modal p{margin:0;font-size:1.45cqi;color:#3A3F4F;line-height:1.5}
+.m-modal p b{color:#14161F}
+.m-actions{display:flex;justify-content:flex-end;gap:1cqi;margin-top:.6cqi}
+.phone{--tf:perspective(1800px) rotateY(9deg) rotateX(5deg) rotateZ(-1.5deg);transform:var(--tf);container-type:inline-size;position:absolute;right:8%;top:20%;width:19%;z-index:2;aspect-ratio:9/19.3;background:#0F1013;border-radius:17%/8%;padding:3.6%;box-shadow:0 50px 90px -25px rgba(0,0,0,.7),inset 0 0 0 3px #2B2D33,inset 0 0 0 4px #44474F;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.work-card:hover .phone{transform:var(--tf) translateY(-4%)}
+.float{position:absolute;z-index:3;right:4%;bottom:9%;width:36%;background:#FFFFFF;color:#14161F;border-radius:1.1cqi;box-shadow:0 3.5cqi 7cqi -1.5cqi rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.5);padding:2.2cqi 2.4cqi;font-family:var(--sans);line-height:1.4;display:grid;gap:1.2cqi;transform:perspective(1600px) rotateY(9deg) rotateX(5deg) rotateZ(-1.5deg)}
+.float .ft{font-size:2cqi;font-weight:600;letter-spacing:-.01em}
+.float .fp{font-size:1.55cqi;color:#5B6070}
+.float .pills{display:flex;flex-wrap:wrap;gap:1cqi}
+.float .st{font-size:1.5cqi;padding:.6cqi 1.2cqi;border-radius:.8cqi}
+.float .row{display:flex;gap:1.6cqi;align-items:flex-start}
+.float .ic{flex:none;width:4.2cqi;height:4.2cqi;border-radius:50%;background:#E9F7EE;color:#1E7A43;display:grid;place-items:center;font-size:2.1cqi;font-weight:700}
+.float .m-radio{font-size:1.8cqi;padding:1.8cqi 2cqi;border-radius:1cqi}.float .m-radio i{width:2.4cqi;height:2.4cqi;border-width:.35cqi}.float .m-radio small{font-size:1.5cqi}
+.float .m-btn{font-size:1.55cqi;padding:1.1cqi 1.8cqi;border-radius:.8cqi}
+.float.modal{width:40%;top:16%;bottom:auto;right:5%;padding:3cqi}
+.ph-screen{background:#FFFFFF;border-radius:12cqi;height:100%;overflow:hidden;display:flex;flex-direction:column;color:#14161F;font-family:var(--sans);line-height:1.35}
+.ph-status{display:flex;justify-content:space-between;align-items:center;padding:5cqi 8cqi 2cqi;font:600 4.6cqi/1 var(--sans)}
+.ph-notch{width:30cqi;height:8.5cqi;background:#0F1013;border-radius:6cqi}
+.ph-body{padding:5cqi 7cqi;display:grid;gap:4.2cqi}
+.ph-h{font:600 8cqi/1.15 var(--sans);letter-spacing:-.02em}
+.ph-p{font-size:4.4cqi;color:#5B6070;margin:0}
+.ph-f{display:grid;gap:1.6cqi}
+.ph-f span{font-size:3.8cqi;color:#5B6070}
+.ph-f b{font-weight:400;font-size:4.6cqi;border:1px solid #D9DCE5;border-radius:2.4cqi;padding:3cqi 3.4cqi}
+.ph-f.focus b{border-color:var(--c);box-shadow:0 0 0 1cqi color-mix(in srgb,var(--c) 18%,transparent)}
+.ph-btn{margin-top:1cqi;background:#1C1D22;color:#FFFFFF;text-align:center;border-radius:3cqi;padding:4cqi;font:600 4.6cqi/1 var(--sans)}
+.dec-fig{margin-top:12px}
+.flow-svg{overflow-x:auto;border:1px solid var(--line);background:var(--surface);padding:16px}
+.flow-svg svg{display:block;width:100%;height:auto}
+@media (max-width:700px){.flow-svg svg{min-width:900px}.anno-list{grid-template-columns:1fr}.mk{width:22px;height:22px;font-size:11px}}
+
+/* casos */
+.work{list-style:none;margin:0;padding:40px 0 0;display:grid;gap:88px}
+.work-card{display:grid;gap:28px;text-decoration:none}
+.work-card:hover .screen{transform:translateY(-3%)}
+.work-info{display:grid;grid-template-columns:56px minmax(0,1.15fr) minmax(0,1fr) auto;gap:24px;align-items:start}
+.work-info .n{font:400 12px var(--mono);color:var(--accent);padding-top:8px}
+.work-info .ttl{display:grid;gap:10px;min-width:0}
+.work-info h3{font-size:clamp(24px,2.6vw,34px);line-height:1.1;font-weight:500}
+.work-card:hover h3{color:var(--accent)}
+.work-info .desc{display:grid;gap:12px;min-width:0}
+.work-info .desc p{margin:0;color:var(--muted);font-size:15px}
+.kpis{display:flex;gap:8px 20px;flex-wrap:wrap;font:400 12px var(--mono)}
+.kpis b{font-weight:500;color:var(--accent)}
+.more{font:500 14px var(--sans);color:var(--accent);white-space:nowrap;padding-top:6px}
+.work-card:hover .more{text-decoration:underline;text-underline-offset:4px}
+
+/* sobre mí */
+.about{padding-top:40px;row-gap:40px}
+.about .lead{grid-column:1/8;font-size:clamp(24px,2.6vw,34px);line-height:1.25;font-weight:400;letter-spacing:-.02em;margin:0}
+.about .text{grid-column:1/7;display:grid;gap:14px}
+.about .text p{margin:0;color:var(--muted)}
+.about dl{grid-column:8/-1;grid-row:1/3;margin:0;display:grid;align-content:start}
+.about dl div{display:grid;grid-template-columns:120px 1fr;gap:16px;padding-block:14px;border-bottom:1px solid var(--line)}
+.about dt{font:400 12px/1.6 var(--mono);color:var(--muted)}
+.about dd{margin:0;font-size:15px}
+.process{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:24px}
+.process div{border-top:1px solid var(--line);padding-top:16px;display:grid;gap:6px;align-content:start}
+.process .label{color:var(--accent)}
+.process h3{font-size:18px}
+.process p{margin:0;color:var(--muted);font-size:15px}
+
+/* fuera del trabajo (franja discreta dentro de Sobre mí) */
+section.block.offs{padding-top:24px}
+.off{list-style:none;margin:0;padding:24px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.off li{display:grid;gap:4px;align-content:start}
+.off strong{font-weight:500;font-size:15px}
+.off li span{color:var(--muted);font-size:14px;line-height:1.5}
+
+/* contacto */
+footer.contact{--ink:var(--accent-ink);--muted:color-mix(in srgb,var(--accent-ink) 72%,transparent);--line:color-mix(in srgb,var(--accent-ink) 28%,transparent);background:var(--accent);color:var(--ink)}
+footer.contact .wrap{padding-block:88px 32px}
+footer.contact .link{text-decoration:none}
+footer.contact .link:hover{color:var(--c-cobalt)}
+footer.contact h2{grid-column:1/9;font-size:clamp(36px,5.4vw,72px);line-height:1.02;font-weight:400}
+footer.contact .links{grid-column:1/-1;display:flex;gap:12px 32px;flex-wrap:wrap;align-items:center;padding-top:40px}
+.copy{background:none;border:1px solid var(--line);color:var(--ink);font:400 12px var(--mono);padding:6px 10px;cursor:pointer}
+.copy:hover{border-color:var(--ink)}
+.fine{grid-column:1/-1;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:80px;padding-top:16px;border-top:1px solid var(--line)}
+
+/* caso de estudio */
+.cs-hero{padding-block:56px 40px;row-gap:28px}
+.cs-hero .back{grid-column:1/-1;font-size:14px;color:var(--muted);text-decoration:none}
+.cs-hero .back:hover{color:var(--accent)}
+.cs-hero .example{grid-column:1/-1}
+.cs-hero h1{grid-column:1/10;font-size:clamp(34px,5vw,64px);line-height:1.04;font-weight:400}
+.cs-hero p{grid-column:1/8;margin:0;font-size:19px;color:var(--muted)}
+.cs-hero .facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--line);padding-top:18px}
+.cs-hero .facts div{display:grid;gap:4px;min-width:0}
+.cs-hero .facts strong{font-weight:400;font-size:15px}
+.cs-cover{padding-bottom:64px}
+.cs-sum{padding-bottom:72px}
+.summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-top:20px}
+.summary div{display:grid;gap:8px;align-content:start;min-width:0}
+.summary p{margin:0;font-size:15px}
+.sub{display:grid;gap:12px;margin-top:8px}
+.decisions{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--line)}
+.decisions>li{display:grid;gap:4px;padding-block:16px;border-bottom:1px solid var(--line)}
+.decisions>li>strong,.dec-txt strong{font-weight:500}
+.decisions>li p{margin:0;color:var(--muted)}
+.cs-body{padding-bottom:40px;column-gap:24px}
+.toc{grid-column:1/3;position:sticky;top:calc(env(safe-area-inset-top,0px) + 90px);align-self:start;display:grid;gap:2px}
+.toc a{text-decoration:none;color:var(--muted);font-size:14px;padding:5px 0}
+.toc a.on{color:var(--accent)}
+.toc a.on::before{content:"— "}
+.cs-content{grid-column:3/-1;display:grid;gap:96px;min-width:0}
+.cs-sec{display:grid;gap:16px;scroll-margin-top:100px;min-width:0}
+.cs-sec>h2,.cs-sec>p,.cs-sec>.prose,.cs-sec>.callout,.cs-sec>ul,.cs-sec>.label,.cs-sec>.sub{max-width:var(--read)}
+.cs-sec>.results{max-width:820px}
+.decisions>li{gap:22px!important;padding-block:32px!important}
+.lead-p{font-size:clamp(20px,2vw,24px);line-height:1.35;letter-spacing:-.01em;margin:0;max-width:var(--read)}
+.cs-sec>ul.bul{max-width:var(--read)}
+.ai-rows{display:grid;border-top:1px solid var(--line);max-width:920px}
+.ai-row{display:grid;grid-template-columns:150px minmax(0,1fr) 190px;gap:24px;padding-block:20px;border-bottom:1px solid var(--line);align-items:start}
+.ai-row .ph{font:400 12px/1.8 var(--mono);color:var(--accent)}
+.ai-row p{margin:0}
+.ai-row small{display:block;color:var(--muted);font-size:15px;margin-top:6px}
+.tools{display:flex;flex-wrap:wrap;gap:6px;align-content:start;justify-content:flex-end}
+.tool{font:400 12px/1 var(--mono);border:1px solid var(--accent);color:var(--accent);padding:6px 10px;border-radius:999px}
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:820px}.quotes blockquote{margin:0;padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--surface);display:grid;gap:14px;align-content:space-between}.quotes p{margin:0;font-size:19px;line-height:1.45;font-style:italic;color:var(--ink)}.quotes cite{font:500 12px var(--mono);font-style:normal;color:var(--muted)}@media (max-width:700px){.quotes{grid-template-columns:1fr}}
+.fblock{display:grid;gap:16px;max-width:860px;padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--surface)}
+.fblock+.fblock{margin-top:16px}
+.fh{font-size:18px;font-weight:500;color:var(--ink)}.fcap{margin:-6px 0 0;color:var(--muted);font-size:15px}
+.fo{font:500 12px var(--mono);color:var(--accent);letter-spacing:.02em;text-transform:uppercase}
+.fopts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fopt,.fjoin{display:grid;gap:10px;padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.fjoin{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.fsteps{list-style:none;margin:0;padding:0;display:grid}
+.fsteps li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:8px;padding:10px 0;border-top:1px solid var(--line)}
+.fsteps li:first-child{border-top:0}
+.fsteps .fn{font:500 12px/1.6 var(--mono);color:var(--muted)}
+.fsteps p{margin:0;font-size:15px;line-height:1.5;color:var(--ink)}
+.fsteps .who{display:inline-block;font:500 11px var(--mono);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);border-radius:20px;padding:2px 8px;margin-bottom:6px}
+.fstates{display:grid;gap:10px;padding-top:6px}.fstates div{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.fstates div span{font-size:14px;padding:4px 12px;border:1px solid var(--line);border-radius:20px}.fstates i{font-style:normal;color:var(--muted)}
+@media (max-width:700px){.fopts{grid-template-columns:1fr}.fblock{padding:20px}}
+.cs-hero .results.top{grid-column:1/-1;border-top:0;padding-top:4px;max-width:900px}
+.cs-hero .results.top b{font-size:clamp(40px,5vw,64px);line-height:1}
+.cs-hero .results.top small{font-size:15px;color:var(--muted);max-width:26ch}
+.arc-l{display:flex;gap:10px;align-items:baseline;font:500 12px var(--mono);color:var(--accent);letter-spacing:.04em;text-transform:uppercase}.arc-l em{font-style:normal;color:var(--muted)}
+.work-info h3{font-size:clamp(28px,3.2vw,44px)!important;letter-spacing:-.025em;text-wrap:balance}
+.work-info .kpis b{color:var(--accent);font-weight:500}
+.kpi-rows{display:grid;border-top:1px solid var(--line);max-width:820px}
+.kpi-rows div{display:grid;grid-template-columns:190px 110px minmax(0,1fr);gap:24px;align-items:baseline;padding-block:16px;border-bottom:1px solid var(--line)}.kpi-rows span{font-weight:500}.kpi-rows em{font:400 28px/1 var(--sans);font-style:normal;color:var(--accent);letter-spacing:-.02em;white-space:nowrap}@media (max-width:600px){.kpi-rows div{grid-template-columns:1fr;gap:4px}}
+.kpi-rows b{font-weight:400;color:var(--muted)}
+.dec-txt{display:grid;gap:6px;max-width:var(--read)}
+.dec-txt strong{font-size:20px;font-weight:500;letter-spacing:-.01em}
+.plate{margin:0;display:grid;gap:20px}
+.plate-in{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--line);container-type:inline-size;background:radial-gradient(60% 80% at 80% 0%,color-mix(in srgb,var(--c) 55%,transparent),transparent 70%),radial-gradient(50% 70% at 0% 100%,color-mix(in srgb,var(--c) 30%,transparent),transparent 70%),repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 44px),repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 44px),#0A0B0F}
+.plate-in::before{content:"";display:block;padding-top:58.75%}
+.plate .browser{position:absolute;left:6.5%;right:6.5%;top:9.4%;width:auto;margin:0;transform:none!important;box-shadow:0 40px 90px -30px rgba(0,0,0,.75),inset 0 0 0 1px rgba(255,255,255,.09)}
+.plate .browser::after,.cover.comp .browser::after{display:none}
+.cover.comp .browser,.cover.comp .phone{--tf:none}
+.mk{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font:600 13px/1 var(--sans);flex:none}
+.mk-line{position:absolute;z-index:4;height:0;border-top:1.5px solid var(--accent);opacity:.9;pointer-events:none}
+.mk-line::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--accent);top:-4px;left:-3px}
+.mk-line.r::after{left:-3px}.mk-line:not(.r)::after{left:auto;right:-3px}
+.shot{position:relative;background:#fff;line-height:0}.shot img{width:100%;height:auto;display:block}.shot .hot{position:absolute;pointer-events:none}
+.shot-card{position:absolute;z-index:3;right:10%;bottom:3%;width:29%;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.7),0 0 0 1px rgba(0,0,0,.06)}
+.shot-card img{width:100%;height:auto;display:block}
+.pieces{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 40px;margin-top:16px;padding-top:28px;border-top:1px solid var(--line)}
+.pieces h3{margin:6px 0 6px;font-size:20px;font-weight:500;letter-spacing:-.01em}.pieces p{margin:0;color:var(--muted)}
+.pc-n{font:500 12px/1 var(--mono);color:var(--accent)}
+.mont{position:relative;margin:28px 0 0;border-radius:24px;overflow:hidden;border:1px solid #1F2125;background:radial-gradient(70% 80% at 85% 0%,color-mix(in srgb,var(--c) 38%,transparent),transparent 65%),radial-gradient(50% 60% at 0% 100%,color-mix(in srgb,var(--c) 18%,transparent),transparent 70%),#0B0C0F}
+.mont::before{content:"";display:block}
+.mont.m-side::before{padding-top:34%}.mont.m-pair::before{padding-top:29%}.mont.m-stack::before{padding-top:50%}
+.dev{position:absolute;background:#0A0A0C;border-radius:1.6cqi;padding:.75cqi;box-shadow:0 0 0 1px #34363C,inset 0 0 0 1px #1C1D21,0 4cqi 8cqi -2cqi rgba(0,0,0,.85);transition:transform 1.2s cubic-bezier(.22,.8,.24,1)}
+.mont{container-type:inline-size}
+.figcap{margin:-4px 0 0;font:400 13px var(--mono);color:var(--muted)}
+.dev-l{position:absolute;top:-2.6cqi;left:0;font:500 1.1cqi/1 var(--mono);color:#C9CBD0;letter-spacing:.06em;text-transform:uppercase}
+.mont.m-pair .dev{top:12%}
+.dev img{display:block;width:100%;height:auto;border-radius:.7cqi}
+.m-side .a{left:3%;top:9%;width:58%;z-index:2}
+.m-side .b{left:56%;top:24%;width:50%;z-index:1}
+.m-pair .dev{top:9%;width:47.5%}.m-pair .a{left:1.5%}.m-pair .b{left:51%}
+.m-stack .a{right:-4%;top:6%;width:60%}
+.m-stack .b{left:4%;top:28%;width:66%;z-index:2;box-shadow:0 0 0 1px #34363C,inset 0 0 0 1px #1C1D21,0 6cqi 10cqi -2cqi rgba(0,0,0,.95)}
+@media (hover:hover){.mont:hover .a{transform:translateY(-.6%)}.mont:hover .b{transform:translateY(-1%)}}
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;gap:16px;margin-top:28px}.bento .bc{height:440px}.bento .bc.w3{height:360px}.bleedwin{position:absolute;left:28px;top:64px;width:104%;transition:transform 1.2s cubic-bezier(.22,.8,.24,1)}.bleedwin .win{border-radius:12px 0 0 0;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08)}.bc:hover .bleedwin{transform:translateY(-6px)}.trio{left:40px!important;right:40px!important;gap:22px!important}
+.bc{position:relative;overflow:hidden;border-radius:24px;background:linear-gradient(180deg,#1A1B1F,#141518);border:1px solid #24262B}
+.bc.w2{grid-column:span 2}.bc.w3{grid-column:1/-1}
+.bc.tint{background:radial-gradient(90% 90% at 100% 0%,color-mix(in srgb,var(--c) 70%,transparent),transparent 60%),radial-gradient(80% 80% at 0% 100%,color-mix(in srgb,var(--c) 35%,transparent),transparent 65%),#111218}
+.bc-l{position:absolute;left:28px;top:24px;z-index:2;font:500 12px/1 var(--mono);color:#C9CBD0;letter-spacing:.02em}
+.bc img{display:block;transition:transform 1.2s cubic-bezier(.22,.8,.24,1)}
+.bc .bleed{position:absolute;left:28px;top:64px;border-radius:14px 0 0 0;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06)}
+.bc .bleed.c{left:50%;transform:translateX(-50%);border-radius:14px 14px 0 0}.bc:hover .bleed.c{transform:translate(-50%,-6px)}.trio{position:absolute;left:28px;right:28px;top:54%;transform:translateY(-50%);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:center}.trio img{width:100%;border-radius:14px;box-shadow:0 40px 70px -28px rgba(0,0,0,.85),0 0 0 1px rgba(0,0,0,.05);transition:transform 1.2s cubic-bezier(.22,.8,.24,1)}.trio img:nth-child(2){transform:translateY(-18px)}
+.bc .flt{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);border-radius:16px;box-shadow:0 50px 90px -30px rgba(0,0,0,.85),0 0 0 1px rgba(0,0,0,.06)}
+@media (hover:hover){.bc:hover .bleed{transform:translateY(-6px)}.bc:hover .trio img{transform:translateY(-6px)}.bc:hover .trio img:nth-child(2){transform:translateY(-24px)}.bc:hover .flt{transform:translate(-50%,-52%)}}
+.win{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.win-bar{display:grid;grid-template-columns:1fr 2fr 1fr;align-items:center;height:30px;padding:0 12px;background:#ECECEF;border-bottom:1px solid #DCDCE0}
+.win-dots{display:flex;gap:6px}.win-dots i{width:10px;height:10px;border-radius:50%;background:#C9C9CE}.win-dots i:nth-child(1){background:#FF5F57}.win-dots i:nth-child(2){background:#FEBC2E}.win-dots i:nth-child(3){background:#28C840}
+.win-url{justify-self:center;width:70%;max-width:340px;text-align:center;background:#fff;border-radius:6px;font:400 11px/20px var(--sans);color:#6B6E76}
+.win img{display:block;width:100%;height:auto}
+.duo{position:relative;margin:28px 0 0;border-radius:24px;overflow:hidden;border:1px solid #24262B;background:radial-gradient(70% 90% at 90% 0%,color-mix(in srgb,var(--c) 65%,transparent),transparent 65%),radial-gradient(60% 70% at 0% 100%,color-mix(in srgb,var(--c) 30%,transparent),transparent 70%),#0C0D11}
+.duo::before{content:"";display:block;padding-top:60%}
+.duo-b{position:absolute}
+.duo-b.back{right:-8%;top:8%;width:62%;opacity:.95}
+.duo-b.front{left:5%;top:22%;width:66%;z-index:2}
+.duo-b.back .win{box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.duo-b.front .win{box-shadow:0 70px 120px -30px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.08)}
+.lapc{display:block;padding:0;position:relative}
+.lap{position:absolute;left:50%;transform:translateX(-50%);top:10%;width:70%;background:#0B0B0D;border-radius:2.2cqi 2.2cqi 0 0;padding:1.1cqi 1.1cqi 0;box-shadow:0 0 0 .18cqi #2E3036,0 6cqi 10cqi -3cqi rgba(0,0,0,.8)}
+.cover.wide .lap{width:62%;top:12%}
+.lap-scr{position:relative;background:#E9E9EC;border-radius:.8cqi .8cqi 0 0;overflow:hidden}
+.lap-notch{position:absolute;left:50%;top:0;transform:translateX(-50%);width:11%;height:1.5cqi;background:#0B0B0D;border-radius:0 0 .6cqi .6cqi;z-index:3}
+.lap-menu{display:flex;gap:1.3cqi;align-items:center;height:1.6cqi;padding:0 1.2cqi;background:#DADADF;font:600 .78cqi/1 var(--sans);color:#2A2B30}.lap-menu .r{margin-left:auto;font-weight:500}
+.lap .win{border-radius:0;box-shadow:none}.lap .win-bar{height:2.1cqi;padding:0 1cqi}.lap .win-dots i{width:.75cqi;height:.75cqi}.lap .win-dots{gap:.45cqi}.lap .win-url{font-size:.8cqi;line-height:1.4cqi;border-radius:.4cqi}
+.work-card:hover .lap{transform:translateX(-50%) translateY(-1.5%)}
+.lap{transition:transform .6s cubic-bezier(.22,.8,.24,1)}
+@media (max-width:900px){.pieces{grid-template-columns:1fr}.bento{grid-template-columns:1fr 1fr}.bento .bc{height:360px}.bc.w2{grid-column:span 2}}
+@media (max-width:600px){.bento{grid-template-columns:1fr;grid-auto-rows:auto}.bc .flt{width:66%!important}.bleedwin{left:20px;top:48px;width:150%}.bento .bc{height:300px}.bento .bc.w3{height:auto}.trio{position:static!important;transform:none!important;grid-template-columns:1fr!important;margin:56px 20% 28px;gap:12px!important}.trio img:nth-child(2){transform:none!important}.trio{left:16px;right:16px;gap:8px}.trio img:nth-child(2){transform:translateY(-10px)}.bc.w2,.bc.w3{grid-column:auto}.bc.w3 .bleed.c{width:80%!important}.bc-l{left:20px;top:18px}.bc .bleed{left:20px;top:48px}.duo-b.back{display:none}.duo-b.front{left:6%;top:10%;width:110%}.duo::before{padding-top:72%}.win-bar{height:20px}.win-dots i{width:7px;height:7px}.win-url{font-size:9px;line-height:14px}.lap,.cover.wide .lap{width:88%;top:12%}}
+.n-mock{background:#fff;color:#1D2130}
+.n-app{display:grid;grid-template-columns:16.6% 1fr;min-height:66.6cqi;font-size:1.05cqi}
+.n-side{background:#FFF7F2;border-right:1px solid #F1E6DE;padding:1.1cqi .9cqi;display:flex;flex-direction:column;gap:.05cqi}
+.n-ni{display:flex;align-items:center;gap:.8cqi;color:#2A2D36;padding:.62cqi .7cqi;border-radius:.5cqi;white-space:nowrap;font-size:1.02cqi}
+.n-ni i{width:1.2cqi;height:1.2cqi;border:.13cqi solid currentColor;border-radius:.3cqi;flex:none;opacity:.75}
+.n-ni em{font-style:normal;flex:1;overflow:hidden;text-overflow:ellipsis}.n-ni s{text-decoration:none;color:#8A8E9A}
+.n-ni.n-sb{padding-left:2.7cqi;padding-block:.5cqi}
+.n-ni.on{background:#fff;color:#14161F;font-weight:600;box-shadow:0 .15cqi .5cqi rgba(60,40,20,.08)}
+.n-cnt{text-decoration:none;background:#1C1D22;color:#fff;border-radius:1cqi;font-size:.75cqi;padding:.1cqi .45cqi}
+.n-new{text-decoration:none;background:#1C1D22;color:#fff;border-radius:.4cqi;font-size:.7cqi;font-weight:600;padding:.15cqi .4cqi}
+.n-refer{margin-top:auto;border:1px solid #1C1D22;border-radius:.5cqi;text-align:center;font-weight:600;font-size:1cqi;padding:.75cqi;color:#14161F}
+.n-social{display:flex;align-items:center;gap:.7cqi;margin-top:.9cqi;color:#5B6070;font-size:.9cqi}.n-social b{width:2.6cqi;height:1.5cqi;border:1px solid #2A2D36;border-radius:.3cqi}
+.n-main{display:flex;flex-direction:column;min-width:0}
+.n-top{display:flex;align-items:center;justify-content:space-between;padding:.6cqi 1.2cqi;background:#FAFAFB;border-bottom:1px solid #EEEFF2}
+.n-burger{display:grid;gap:.25cqi}.n-burger i{width:1.1cqi;height:.12cqi;background:#5B6070}
+.n-tr{display:flex;align-items:center;gap:1.4cqi;color:#5B6070;font-size:.95cqi}
+.n-srch{width:14cqi;border:1px solid #DDDFE4;border-radius:.4cqi;padding:.5cqi .6cqi;background:#fff;color:#8A8E9A;display:flex;justify-content:space-between}
+.n-ic{position:relative;width:1.2cqi;height:1.1cqi;border:.13cqi solid #5B6070;border-radius:.25cqi}.n-ic.bell{border-radius:.6cqi .6cqi .2cqi .2cqi}
+.n-ic u{position:absolute;top:-.8cqi;left:.6cqi;text-decoration:none;background:#1C1D22;color:#fff;font-size:.65cqi;border-radius:1cqi;padding:.05cqi .35cqi}
+.n-av{width:2.6cqi;height:2.6cqi;border-radius:50%;background:linear-gradient(135deg,#E9D3C4,#B98C74)}
+.n-page{padding:1.4cqi 1.7cqi 2cqi;position:relative}
+.n-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.6cqi}
+.n-head>div:first-child{display:grid;gap:.4cqi}
+.n-crumb{font-size:1cqi;color:#14161F;font-weight:600}
+.n-title{font-size:1.85cqi;font-weight:600;color:#14161F;letter-spacing:-.01em}
+.n-btns{display:flex;gap:.6cqi}
+.n-btn{font-size:1cqi;font-weight:500;padding:.65cqi 1.1cqi;border-radius:.45cqi;border:1px solid #D9DCE5;color:#1D2130;background:#fff;white-space:nowrap}
+.n-btn.p{background:#1C1D22;border-color:#1C1D22;color:#fff}.n-btn.n-off{background:#F4F5F7;color:#B4B7C0;border-color:#E7E8EE}.n-btn.s{padding:.55cqi 1cqi}
+.n-tabsrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6cqi}
+.n-tabs{display:flex;gap:1.6cqi;border-bottom:.14cqi solid #E7E8EE;width:47%;font-size:1.05cqi;color:#2A2D36}.n-tabs span{padding-bottom:.6cqi}.n-tabs .on{font-weight:600;color:#14161F;box-shadow:inset 0 -.18cqi #1C1D22}
+.n-tbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6cqi}
+.n-srch2{width:19cqi;border:1px solid #DDDFE4;border-radius:.4cqi;padding:.55cqi .8cqi;color:#8A8E9A;font-size:1cqi}
+.n-tbl{display:grid}
+.n-tr.h{font-size:.85cqi;color:#5B6070;border-bottom:1px solid #E7E8EE;padding-block:.75cqi}
+.n-tbl .n-tr{display:grid;grid-template-columns:1.2fr 1.2fr 1.2fr 1.2fr 1.2fr 1.2fr .6fr;gap:0;align-items:center;padding:.95cqi 1.1cqi;font-size:1cqi;color:#2A2D36;white-space:nowrap}
+.n-tbl .n-tr:nth-child(odd):not(.h){background:#F7F7F9;border-radius:.4cqi}.n-tbl .n-tr b{font-weight:600;color:#14161F}
+.n-st{justify-self:start;font-size:.72cqi;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.2cqi .5cqi;border-radius:.3cqi;border:1px solid}
+.n-st.reg{color:#1D5FD1;background:#EEF4FF;border-color:#BCD3FA}.n-st.ok{color:#1E7A43;background:#E9F7EE;border-color:#B5E2C4}.n-st.pr{color:#A15C07;background:#FFF6E6;border-color:#F5D9A8}.n-st.rj{color:#B42318;background:#FEF0EF;border-color:#F5C2BD}.n-st.er{color:#fff;background:#C6281C;border-color:#C6281C}.n-st.dr{color:#5B6070;background:#F4F5F7;border-color:#DDDFE4}
+.n-act{display:flex;gap:1.6cqi;justify-content:flex-end;color:#14161F;font-style:normal}.n-act i{font-style:normal}.n-act.n-dim{color:#C4C7CF}
+.n-pag{display:flex;justify-content:center;gap:1.5cqi;margin-top:1.4cqi;font-size:1cqi;color:#2A2D36;align-items:center}.n-pag .on{background:#1C1D22;color:#fff;border-radius:.4cqi;padding:.45cqi .8cqi}
+.n-split{display:grid;grid-template-columns:18cqi 1fr;gap:3cqi}
+.n-steps{display:grid;align-content:start}.n-steps span{font-size:1.05cqi;padding:1.1cqi 1.1cqi;border-bottom:1px solid #EEEFF2;color:#2A2D36}.n-steps span:last-child{border-bottom:0}
+.n-steps .on{background:#F3F1EE;color:#14161F;font-weight:600;border-radius:.4cqi;box-shadow:inset .2cqi 0 #1C1D22}
+.n-sec{display:grid;gap:.5cqi;align-content:start}
+.n-h2{font-size:1.55cqi;font-weight:600;color:#14161F;margin-top:.3cqi}.n-p{font-size:1.05cqi;color:#2A2D36;margin-bottom:1cqi}
+.n-radio{display:flex;gap:.8cqi;align-items:baseline;font-size:1.02cqi;color:#2A2D36;padding:.75cqi 0}.n-radio b{color:#14161F}
+.n-radio i{width:1.1cqi;height:1.1cqi;border-radius:50%;border:.13cqi solid #B8BCC8;flex:none;align-self:center}.n-radio.on i{border-color:#1C1D22;background:radial-gradient(circle,#1C1D22 38%,#fff 44%)}
+.n-form{display:grid;grid-template-columns:1fr 1fr;gap:1.3cqi 1.1cqi;width:82%}.n-form.one{grid-template-columns:1fr;width:40%}
+.n-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.1cqi}
+.n-fld{display:grid;gap:.45cqi;align-content:start}.n-fld span{font-size:.85cqi;font-weight:600;color:#5B6070}
+.n-fld b{font-weight:400;font-size:1.05cqi;border:1px solid #D9DCE5;border-radius:.4cqi;padding:.6cqi .6cqi;color:#14161F;background:#fff;display:flex;justify-content:space-between}
+.n-fld b.sel::after{content:"⌄";color:#8A8E9A}.n-fld small{font-size:.8cqi;color:#8A8E9A}
+.n-conn{display:grid;justify-items:center;gap:.9cqi;margin-top:9cqi;text-align:center;font-size:1.05cqi;color:#2A2D36;line-height:1.45}.n-conn b{font-size:1.2cqi;color:#14161F;margin-top:2cqi}
+.n-conn-l{display:flex;align-items:center}.vf{font:italic 800 2.2cqi/1 var(--sans);color:#13336F;letter-spacing:-.02em}.vf i{color:#D33A2C;font-style:normal;font-weight:400}
+.n-conn-l .ln{width:3cqi;height:.12cqi;background:#1C1D22}.n-conn-l .dots{width:4.2cqi;height:4.2cqi;border-radius:50%;background:#1C1D22;display:flex;gap:.35cqi;align-items:center;justify-content:center}.n-conn-l .dots i{width:.45cqi;height:.45cqi;border-radius:50%;background:#fff}
+.n-tip{position:absolute;right:1.7cqi;top:12.4cqi;width:16.5cqi;background:#fff;border:1px solid #E7E8EE;border-radius:.4cqi;box-shadow:0 .4cqi 1.2cqi -.4cqi rgba(20,22,31,.25);padding:.6cqi .8cqi;font-size:.92cqi;line-height:1.35;color:#14161F}
+.bc-in{position:absolute;left:22px;top:52px;right:0;bottom:0;overflow:hidden;border-radius:12px 0 0 0;background:#fff;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}.zw{position:absolute}.zw .browser{position:relative;left:auto;top:auto;width:100%;transform:none;box-shadow:0 40px 80px -30px rgba(0,0,0,.75),inset 0 0 0 1px rgba(255,255,255,.09)}.zw .browser::after{display:none}
+.bc .zw{transition:transform 1.2s cubic-bezier(.22,.8,.24,1)}
+.plate-in .mk.abs{position:absolute;z-index:5;box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 28%,transparent),0 8px 18px rgba(0,0,0,.45)}
+.anno-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 32px}
+.anno-list li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:var(--muted)}
+.anno-list li .mk{margin-top:-2px}
+.m-toast{top:auto;bottom:6cqi;width:30%}
+.m-lf{grid-template-columns:24% 44%!important}
+.flow-svg svg text{font-family:var(--sans)}
+.cs-sec h2{font-size:28px;font-weight:400}
+.cs-sec p{margin:0}
+.callout{border-left:2px solid var(--accent);padding:4px 0 4px 20px;display:grid;gap:6px}
+.callout strong{font-weight:500;font-size:19px;line-height:1.4}
+.jtbd{display:grid;border-top:1px solid var(--line)}
+.jtbd div{padding:16px 0;border-bottom:1px solid var(--line)}
+.jtbd b{font-weight:500;color:var(--accent)}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font:400 13px var(--mono)}
+.flow span{border:1px solid var(--line);padding:8px 12px;background:var(--surface)}
+.flow i{color:var(--muted);font-style:normal}
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid var(--line);padding-top:16px}
+.results div{display:grid;gap:6px}
+.results b{color:var(--accent);font-size:36px;font-weight:400;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.results small{color:var(--muted);font-size:14px}
+figure{margin:0;display:grid;gap:10px;max-width:none}
+figcaption{font:400 12px/1.6 var(--mono);color:var(--muted)}
+ul.clean,ul.bul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ul.clean li,ul.bul li{position:relative;padding-left:24px}
+ul.clean li::before,ul.bul li::before{content:"◇";position:absolute;left:0;top:0;color:var(--accent);font-size:.9em}
+.prose{display:grid;gap:14px}.prose p{margin:0}
+.next{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding-block:24px;border-block:1px solid var(--ink);text-decoration:none}
+.next h3{font-size:24px;font-weight:400}
+.next:hover h3{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+
+/* agente */
+.agent{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:40;width:min(400px,calc(100vw - 32px));height:min(580px,calc(100dvh - 120px));background:var(--surface);border:1px solid var(--ink);display:flex;flex-direction:column}
+.agent-head{display:flex;justify-content:space-between;align-items:start;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.agent-head strong{font-weight:500}
+.x{background:none;border:0;color:var(--ink);font-size:22px;line-height:1;cursor:pointer;padding:0 4px}
+.log{flex:1;overflow-y:auto;padding:18px;display:grid;gap:14px;align-content:start}
+.msg{max-width:90%;font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.me{justify-self:end;background:var(--accent);color:var(--accent-ink);padding:9px 13px}
+.msg.typing{color:var(--muted)}
+.sugg{display:grid;gap:6px;justify-items:start}
+.chip{font:400 14px var(--sans);background:none;color:var(--ink);border:1px solid var(--line);padding:7px 12px;cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.agent form{display:flex;border-top:1px solid var(--line)}
+.agent input{flex:1;min-width:0;background:transparent;color:var(--ink);border:0;padding:15px 18px;font:400 15px var(--sans)}
+.agent input:focus{outline:none}
+.agent form:focus-within{box-shadow:inset 0 0 0 1px var(--accent)}
+.send{background:var(--ink);color:var(--bg);border:0;padding:0 18px;font:500 14px var(--sans);cursor:pointer}
+.note{font:400 11px/1.5 var(--mono);color:var(--muted);padding:10px 18px 14px;margin:0}
+.fab{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:30;padding:12px 16px;box-shadow:0 12px 30px -10px rgba(0,0,0,.6);transition:opacity .25s ease,transform .25s ease}
+.fab.away{opacity:0;transform:translateY(12px);pointer-events:none;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility 0s .25s}
+.sr{position:absolute;left:-9999px}
+
+@media (max-width:900px){
+  .ai-row{grid-template-columns:1fr;gap:8px}
+  .tools{justify-content:flex-start}
+  .plate .anno-list{grid-template-columns:1fr;gap:12px}
+  .summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero h1,.hero .intro,.about .lead,.about .text,.about dl,footer.contact h2,.cs-hero h1,.cs-hero p{grid-column:1/-1}
+  .about dl{grid-row:auto}
+  .hero .meta,.cs-hero .facts{grid-template-columns:repeat(2,1fr)}
+  .work-info{grid-template-columns:36px minmax(0,1fr);row-gap:14px}
+  .work-info .desc,.work-info .more{grid-column:2}
+  .cover{aspect-ratio:4/3;padding-top:10%}
+  .cover .screen{width:88%}
+  .browser{left:5%;width:90%;top:10%}
+  .phone{display:none}
+  .float{width:46%}
+  .cover.wide{aspect-ratio:16/10}
+  .process{grid-template-columns:1fr}
+  .off{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .toc{display:none}
+  .cs-content{grid-column:1/-1}
+  .results{grid-template-columns:1fr}
+  .hdr-r{gap:10px}
+  .menu-btn{display:inline-flex}
+  nav.main{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--bg);border-bottom:1px solid var(--accent);padding-block:4px 12px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+  nav.main.open{display:flex}
+  nav.main a{padding-block:14px;border-bottom:1px solid var(--line);font-size:20px;color:var(--ink)}
+  nav.main a:last-child{border-bottom:0}
+}
+@media (max-width:520px){
+  .fab{padding:10px 14px;font-size:13px;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .summary{grid-template-columns:1fr}
+  .agent{right:0;bottom:0;width:100%;height:calc(100dvh - 60px);border-width:1px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .menu-btn .txt{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#">Julia Besada<span style="color:var(--accent)">.</span></a>
+    <div class="hdr-r">
+      <nav class="main" id="mainNav" data-i18n-aria="navAria">
+        <a href="#trabajo" data-i18n="navWork">Trabajo</a>
+        <a href="#sobre-mi" data-i18n="navAbout">Sobre mí</a>
+        <a href="#contacto" data-i18n="navContact">Contacto</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mainNav"><span class="bars" aria-hidden="true"><i></i><i></i></span><span class="txt" data-i18n="menu">Menú</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+  <div class="band"><section class="wrap grid hero">
+    <div class="top"><span class="label" data-i18n="heroLabel"></span></div>
+    <h1 data-i18n="heroTitle"></h1>
+    <p class="intro" data-i18n="heroIntro"></p>
+    <div class="meta">
+      <div><span class="label" data-i18n="mRole"></span><strong>Product Designer &amp; Builder</strong></div>
+      <div><span class="label" data-i18n="mExp"></span><strong data-i18n="mExpV"></strong></div>
+      <div><span class="label" data-i18n="mFocus"></span><strong data-i18n="mFocusV"></strong></div>
+      <div><span class="label" data-i18n="mStatus"></span><strong class="status"><i></i><span data-i18n="mStatusV"></span></strong></div>
+    </div>
+  </section></div>
+
+  <section class="wrap block" id="trabajo">
+    <div class="sec-head"><h2 data-i18n="workTitle"></h2><span class="label" data-i18n="workCount"></span></div>
+    <ol class="work" id="caseList"></ol>
+  </section>
+
+  <section class="wrap block" id="sobre-mi">
+    <div class="sec-head"><h2 data-i18n="aboutTitle"></h2></div>
+    <div class="grid about">
+      <p class="lead" data-i18n="aboutLead"></p>
+      <div class="text">
+        <p data-i18n="aboutP1"></p>
+        <p data-i18n="aboutP2"></p>
+        <p><a class="link" href="#contacto" data-i18n="cv"></a> &nbsp;·&nbsp; <a class="link" href="https://www.linkedin.com/in/juliabesada/" target="_blank" rel="noopener">LinkedIn</a></p>
+      </div>
+      <dl>
+        <div><dt>2023–2026</dt><dd>Product Designer, Hostaway</dd></div>
+        <div><dt>2021–2023</dt><dd>Product Designer, Gibobs Allbanks</dd></div>
+        <div><dt>2018–2020</dt><dd data-i18n="dlEarly"></dd></div>
+        <div><dt data-i18n="dtEdu"></dt><dd data-i18n="dlEdu"></dd></div>
+        <div><dt data-i18n="dtCert"></dt><dd>Claude Code (Anthropic) · Design Systems with Figma (Figma Camp)</dd></div>
+        <div><dt data-i18n="dtTools"></dt><dd>Figma, Claude Code, Cursor, GitHub, Useberry, Hotjar, PostHog, Pendo, Jira</dd></div>
+        <div><dt data-i18n="dtLang"></dt><dd data-i18n="dlLang"></dd></div>
+      </dl>
+      <div class="process">
+        <div><span class="label" data-i18n="p1l"></span><h3>Research</h3><p data-i18n="p1"></p></div>
+        <div><span class="label" data-i18n="p2l"></span><h3 data-i18n="p2h"></h3><p data-i18n="p2"></p></div>
+        <div><span class="label" data-i18n="p3l"></span><h3 data-i18n="p3h"></h3><p data-i18n="p3"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap block offs" id="fuera">
+    <div class="sec-head"><h2 data-i18n="offTitle"></h2></div>
+    <ul class="off">
+      <li><strong data-i18n="off1"></strong></li>
+      <li><strong data-i18n="off2"></strong></li>
+      <li><strong data-i18n="off3"></strong></li>
+      <li><strong data-i18n="off4"></strong></li>
+    </ul>
+  </section>
+</main>
+
+<main id="case" hidden></main>
+
+<footer class="contact" id="contacto">
+  <div class="wrap grid">
+    <h2 data-i18n="ctaTitle"></h2>
+    <div class="links">
+      <a class="link" id="mail" href="mailto:juliabvinhas@gmail.com">juliabvinhas@gmail.com</a>
+      <a class="link" href="https://www.linkedin.com/in/juliabesada/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="link" href="#contacto" data-i18n="cvPdf"></a>
+    </div>
+    <div class="fine"><span class="label">© 2026 Julia Besada</span><span class="label" data-i18n="fineLoc"></span></div>
+  </div>
+</footer>
+
+<button class="ask fab" type="button" id="fab" data-open-agent data-i18n="ask"></button>
+
+<aside class="agent" id="agent" hidden data-i18n-aria="agentAria">
+  <div class="agent-head">
+    <div><strong data-i18n="agentTitle"></strong><div class="label" data-i18n="agentSub"></div></div>
+    <button class="x" type="button" id="closeAgent" data-i18n-aria="close">×</button>
+  </div>
+  <div class="log" id="log" aria-live="polite"></div>
+  <form id="askForm">
+    <label for="q" class="sr" data-i18n="qLabel"></label>
+    <input id="q" autocomplete="off" data-i18n-ph="qPh">
+    <button class="send" type="submit" data-i18n="send"></button>
+  </form>
+  <p class="note" data-i18n="agentNote"></p>
+</aside>
+
+<script>
+/* ---------- textos ES / EN ---------- */
+const T={
+es:{
+  navAria:"Principal",navWork:"Trabajo",navAbout:"Sobre mí",navContact:"Contacto",menu:"Menú",
+  heroLabel:"Product Designer &amp; Builder — Bilbao · Remoto (EMEA)",
+  heroTitle:"Diseño productos complejos en SaaS y fintech. <span>De la investigación a producción.</span>",
+  heroIntro:"Más de 5 años diseñando productos web y móviles, de discovery a lanzamiento. Uso la IA en todo el proceso, desde analizar la investigación con usuarios hasta preparar prototipos interactivos.",
+  mRole:"Rol",mExp:"Experiencia",mExpV:"5+ años",mFocus:"Foco",mFocusV:"Producto B2B, flujos complejos e IA",mStatus:"Estado",mStatusV:"Disponible · remoto EMEA",
+  workTitle:"Casos de estudio",workCount:"3 proyectos",more:"Ver caso de estudio →",
+  aboutTitle:"Sobre mí",aboutLead:"Empiezo por las personas usuarias y termino en producción.",
+  aboutP1:"En Hostaway empecé como la única diseñadora de seis áreas de producto y acabé especializándome en Pagos y compliance. Antes, en Gibobs, creé un sistema de diseño desde cero para una fintech de hipotecas.",
+  aboutP2:"La IA es una herramienta fundamental en mi proceso de diseño. La uso para analizar entrevistas y tests de usabilidad, mejorar el UX writing, trabajar más rápido con el sistema de diseño y preparar prototipos interactivos con los que validar ideas con usuarios y stakeholders.",
+  cv:"Descargar CV",cvPdf:"CV (PDF)",
+  dlEarly:"Fundadora de Monte das Flores · Eventbrite y StubHub",dtEdu:"Formación",dlEdu:"Administración de Empresas, Universidad de Santiago de Compostela · Bootcamp UX/UI, UXER School",
+  dtCert:"Certificados",dtTools:"Herramientas",dtLang:"Idiomas",dlLang:"Español nativo · Inglés C1",
+  p1l:"Investigar",p1:"Entre 10 y 15 entrevistas y tests de usabilidad por proyecto y talleres de discovery con JTBD y journey mapping. Con IA analizo las sesiones y sintetizo los hallazgos.",
+  p2l:"Diseñar",p2h:"Flujos y sistemas",p2:"Flujos y sistemas de diseño que funcionan para las personas usuarias y para el negocio, también con requisitos legales complejos. Con IA reviso el UX writing y agilizo el trabajo con el sistema de diseño.",
+  p3l:"Validar",p3h:"Prototipos interactivos",p3:"Prototipos funcionales hechos con IA para probar ideas con usuarios y presentarlas a stakeholders antes de desarrollarlas.",
+  offTitle:"Fuera del trabajo",off1:"Cerámica",off2:"Cine",off3:"Repostería",off4:"Viajar",
+  ctaTitle:"¿Buscáis product designer? Hablemos.",copy:"Copiar email",copied:"Copiado",fineLoc:"Bilbao · Remoto",
+  ask:"Pregúntame",agentAria:"Agente del portfolio",agentTitle:"Pregunta sobre Julia",agentSub:"Experiencia, proyectos, forma de trabajar",close:"Cerrar",
+  qLabel:"Tu pregunta sobre Julia",qPh:"Escribe tu pregunta",send:"Enviar",
+  agentNote:"Respuestas generadas con IA a partir de la información de Julia. No compartas datos personales.",
+  hello:"Hola. Puedes preguntarme por la experiencia de Julia, sus proyectos, cómo trabaja o cómo usa la IA.",
+  sugg:["¿Qué experiencia tiene?","¿Qué proyecto debería ver primero?","¿Cómo usa la IA?"],thinking:"Pensando…",
+  noData:"No tengo ese dato. Puedes preguntárselo directamente a Julia en juliabvinhas@gmail.com.",
+  back:"← Casos de estudio",pending:"Detalle del caso pendiente de completar",fCompany:"Empresa",fPeriod:"Periodo",fRole:"Mi rol",fTeam:"Equipo",tocAria:"Secciones del caso",
+  sumTitle:"En resumen",sum:{problem:"Qué problema resolví",role:"Mi rol",decisions:"Decisiones clave",outcome:"Resultado"},sumPh:"[Una o dos frases]",
+  sec:{problema:"Problema",rol:"Mi rol",proceso:"Proceso",decisiones:"Decisiones",resultado:"Resultado",ia:"IA",aprendizajes:"Aprendizajes"},
+  sProbH:"Qué problema resolví",sProbL:"En una frase",sProbC:"Las personas usuarias necesitaban X, pero el producto les obligaba a Y, lo que provocaba Z.",sProbP:"Contexto: qué es el producto, para quién y por qué el problema importaba al negocio. Añade la evidencia: métricas, tickets de soporte, citas de entrevistas.",
+  sRoleH:"Cuál fue mi rol",sRoleP:"Qué hice yo exactamente y de qué decisiones fui responsable.",sRoleList:["Responsable de: [research, flujos, UI, QA…]","Trabajé con: [producto, ingeniería, legal, partners…]","Duración: [X semanas o meses]"],
+  sProcH:"Cómo llegué a la solución",sJtbdL:"Jobs to be done",sResL:"Investigación",sFlowL:"Cómo funciona",
+  sDecH:"Qué decisiones tomé",sDec:[["[Decisión 1]","Por qué la tomé y qué alternativa descarté."],["[Decisión 2]","Por qué la tomé y qué alternativa descarté."],["[Decisión 3]","Por qué la tomé y qué alternativa descarté."]],
+  sOutH:"Cuál fue el resultado",sOutP:"Qué cambió para las personas usuarias y para el negocio. Si no hay cifras, usa feedback cualitativo o señales de adopción.",
+  sJtbdH:"Lo que la gente intenta conseguir",sJtbd:["<b>Cuando</b> [situación], <b>quiero</b> [motivación], <b>para</b> [resultado esperado].","<b>Cuando</b> [situación], <b>quiero</b> [motivación], <b>para</b> [resultado esperado]."],
+  sResH:"Qué aprendimos de los usuarios",sRes:["Método: X entrevistas, Y tests de usabilidad.","Hallazgo clave 1 y cómo cambió el enfoque.","Hallazgo clave 2, con una cita breve de un participante."],
+  sFlowH:"El flujo antes y después",sFlow:["Paso 1","Paso 2","Paso 3","Paso 4"],sFlowP:"Aquí va tu diagrama exportado de FigJam, con una línea sobre qué pasos se eliminaron.",
+  sSolH:"Decisiones clave de diseño",sSolCap:"Pantalla principal. Explica la decisión que muestra.",sSolP:"Dos o tres decisiones importantes, cada una con el porqué y las alternativas descartadas.",
+  sResultsH:"Qué cambió",sLearnH:"Qué haría distinto",sLearnP:"Qué salió bien, qué cambiarías y qué te llevas al siguiente proyecto.",next:"Siguiente caso",
+  pendingFig:"[Cifra]",pendingRes:"Resultado pendiente"
+},
+en:{
+  navAria:"Main",navWork:"Work",navAbout:"About",navContact:"Contact",menu:"Menu",
+  heroLabel:"Product Designer &amp; Builder — Bilbao · Remote (EMEA)",
+  heroTitle:"I design complex products in SaaS and fintech. <span>From research to production.</span>",
+  heroIntro:"5+ years designing web and mobile products, from discovery to launch. I use AI throughout the process, from analysing user research to building interactive prototypes.",
+  mRole:"Role",mExp:"Experience",mExpV:"5+ years",mFocus:"Focus",mFocusV:"B2B product, complex flows and AI",mStatus:"Status",mStatusV:"Available · remote EMEA",
+  workTitle:"Case studies",workCount:"3 projects",more:"View case study →",
+  aboutTitle:"About",aboutLead:"I start with the people who use the product and finish in production.",
+  aboutP1:"At Hostaway I started as the only designer across six product areas and ended up specialising in Payments and compliance. Before that, at Gibobs, I built a design system from scratch for a mortgage fintech.",
+  aboutP2:"AI is a core tool in my design process. I use it to analyse interviews and usability tests, sharpen UX writing, work faster with the design system and build interactive prototypes to validate ideas with users and stakeholders.",
+  cv:"Download CV",cvPdf:"CV (PDF)",
+  dlEarly:"Founder of Monte das Flores · Eventbrite and StubHub",dtEdu:"Education",dlEdu:"Business Management, University of Santiago de Compostela · UX/UI Bootcamp, UXER School",
+  dtCert:"Certificates",dtTools:"Tools",dtLang:"Languages",dlLang:"Spanish (native) · English C1",
+  p1l:"Discover",p1:"10–15 interviews and usability tests per project, plus discovery workshops with JTBD and journey mapping. I use AI to analyse sessions and synthesise findings.",
+  p2l:"Design",p2h:"Flows and systems",p2:"Flows and design systems that work for users and for the business, including complex legal requirements. I use AI to review UX writing and speed up design system work.",
+  p3l:"Validate",p3h:"Interactive prototypes",p3:"Working prototypes built with AI to test ideas with users and present them to stakeholders before development.",
+  offTitle:"Outside work",off1:"Ceramics",off2:"Cinema",off3:"Baking",off4:"Travel",
+  ctaTitle:"Hiring a product designer? Let's talk.",copy:"Copy email",copied:"Copied",fineLoc:"Bilbao · Remote",
+  ask:"Ask me",agentAria:"Portfolio assistant",agentTitle:"Ask about Julia",agentSub:"Experience, projects, way of working",close:"Close",
+  qLabel:"Your question about Julia",qPh:"Type your question",send:"Send",
+  agentNote:"AI-generated answers based on Julia's information. Please don't share personal data.",
+  hello:"Hi. You can ask me about Julia's experience, her projects, how she works or how she uses AI.",
+  sugg:["What's her experience?","Which project should I see first?","How does she use AI?"],thinking:"Thinking…",
+  noData:"I don't have that information. You can ask Julia directly at juliabvinhas@gmail.com.",
+  back:"← Case studies",pending:"Case details to be completed",fCompany:"Company",fPeriod:"Period",fRole:"My role",fTeam:"Team",tocAria:"Case sections",
+  sumTitle:"At a glance",sum:{problem:"Problem I solved",role:"My role",decisions:"Key decisions",outcome:"Outcome"},sumPh:"[One or two sentences]",
+  sec:{problema:"Problem",rol:"My role",proceso:"Process",decisiones:"Decisions",resultado:"Outcome",ia:"AI",aprendizajes:"Learnings"},
+  sProbH:"What problem I solved",sProbL:"In one sentence",sProbC:"Users needed X, but the product forced them to Y, which caused Z.",sProbP:"Context: what the product is, who it's for and why the problem mattered to the business. Add the evidence: metrics, support tickets, interview quotes.",
+  sRoleH:"What my role was",sRoleP:"What I did myself and which decisions I owned.",sRoleList:["Owned: [research, flows, UI, QA…]","Worked with: [product, engineering, legal, partners…]","Duration: [X weeks or months]"],
+  sProcH:"How I got to the solution",sJtbdL:"Jobs to be done",sResL:"Research",sFlowL:"How it works",
+  sDecH:"What decisions I made",sDec:[["[Decision 1]","Why I made it and which alternative I ruled out."],["[Decision 2]","Why I made it and which alternative I ruled out."],["[Decision 3]","Why I made it and which alternative I ruled out."]],
+  sOutH:"What the outcome was",sOutP:"What changed for users and for the business. If there are no figures, use qualitative feedback or adoption signals.",
+  sJtbdH:"What people are trying to get done",sJtbd:["<b>When</b> [situation], <b>I want to</b> [motivation], <b>so I can</b> [expected outcome].","<b>When</b> [situation], <b>I want to</b> [motivation], <b>so I can</b> [expected outcome]."],
+  sResH:"What we learned from users",sRes:["Method: X interviews, Y usability tests.","Key finding 1 and how it changed the approach.","Key finding 2, with a short participant quote."],
+  sFlowH:"The flow before and after",sFlow:["Step 1","Step 2","Step 3","Step 4"],sFlowP:"Your FigJam diagram goes here, with one line on which steps were removed.",
+  sSolH:"Key design decisions",sSolCap:"Main screen. Explain the decision it shows.",sSolP:"Two or three important decisions, each with the why and the alternatives you ruled out.",
+  sResultsH:"What changed",sLearnH:"What I'd do differently",sLearnP:"What went well, what you'd change and what you take into the next project.",next:"Next case",
+  pendingFig:"[Figure]",pendingRes:"Result pending"
+}};
+
+/* ---------- casos (sustituir por los reales) ---------- */
+const CASES=[
+  { id:"facturacion-ue", color:"var(--c-cobalt)", mock:"hero", flowSvg:true,
+    title:{es:"Un solo flujo para facturar en tres países",en:"One flow for compliant invoicing in three countries"},
+    summary:{es:"Un solo flujo de facturación, lanzado en España, Italia y Francia. El 40 % de los anfitriones elegibles lo activó y el 100 % de las facturas enviadas fueron aceptadas por la administración.",
+             en:"A single invoicing flow, launched in Spain, Italy and France. 40% of eligible hosts turned it on and 100% of submitted invoices were accepted by the authorities."},
+    company:{es:"SaaS B2B de alquiler vacacional · Pagos",en:"B2B vacation rental SaaS · Payments"}, year:"2025–2026", role:"Product Designer", team:{es:"Ingeniería y Product Marketing Manager",en:"Engineering and Product Marketing Manager"},
+    kpis:{es:[["40 %","adopción"],["100 %","envíos aceptados"],["3","países"]],en:[["40%","adoption"],["100%","accepted submissions"],["3","countries"]]},
+    brief:{
+      problem:{es:"Las facturas del producto no cumplían la normativa, y España, Italia y Francia empezaban a exigir su envío a sistemas oficiales distintos.",en:"The product's invoices weren't compliant, and Spain, Italy and France were starting to require submission to different official systems."},
+      role:{es:"Product Designer responsable de todo el diseño: research, flujos, tests con usuarios y UI.",en:"Product Designer owning the whole design: research, flows, user testing and UI."},
+      decisions:{es:"El mismo flujo en todos los países, con una configuración por vendedor y validación antes de emitir.",en:"The same flow in every country, with setup per seller and validation before issuing."},
+      outcome:{es:"Lanzado en España, Italia y Francia con el mismo flujo.",en:"Launched in Spain, Italy and France with the same flow."}
+    },
+    body:{
+      es:{
+        arc:{ctxL:"Contexto",ctxH:"Facturas sin validez legal y un plazo que se acercaba",roleL:"Mi papel",storyL:"Historia",storyH:"Una configuración que sirve para cualquier país",
+          storyP:"<p>En las sesiones de test con 10 usuarios y beta testers descubrimos que muchos anfitriones gestionan varias empresas, y cada una necesita su propia configuración fiscal. Además, la primera versión, con toda la configuración en una sola pantalla, no se podía llevar a otros países. Propuse rehacer el flujo para la segunda versión y convencí a ingeniería del cambio: en la V2, el primer paso es elegir el país.</p><p>Con eso, el producto se construyó en torno a cinco decisiones:</p>",
+          resL:"Resultados",resH:"Facturación conforme en tres países, con el mismo flujo",quotesL:"Lo que dicen los clientes"},
+        sProbH:"El reto",
+        sProbC:"Los anfitriones necesitaban facturas conformes a la normativa de su país, y las que generaba el producto no lo eran.",
+        sProbP:"<p>Las facturas del producto no servían como documento legal: no tenían numeración secuencial, la fecha cambiaba en cada descarga y no se podían corregir sus datos. Además, España, Italia y Francia empezaban a exigir su envío a VeriFactu, SdI y Plateforme Agréée. España marcaba el primer plazo, enero de 2026.</p>",
+        sRoleH:"Mi papel en el proyecto",
+        sRoleP:"Lideré el diseño de principio a fin. La PM se fue durante el primer mes y asumí también su trabajo, en contacto directo con ingeniería y con la Product Marketing Manager.",
+        sRoleList:[],
+        sProcH:"Cómo llegué a la solución",
+        sJtbd:["<b>Cuando</b> cobro una reserva, <b>quiero</b> emitir una factura legal sin tener que conocer la normativa, <b>para</b> no tener problemas con la administración.","<b>Cuando</b> los datos de una factura no son correctos, <b>quiero</b> poder corregirlos, <b>para</b> que el documento sea válido."],
+        v1L:"Primera versión", v1P:"<p>En la V1, toda la configuración estaba en una sola pantalla y no se podía llevar a otros países. En la V2, el primer paso es elegir el país, que solo determina con qué sistema oficial se conecta el vendedor. También mejoramos los avisos de facturas sin cerrar por falta de datos.</p>",
+        quotesL:"Lo que nos dijeron los clientes", quotes:[["Hacer el envío de facturas a Hacienda a través de vuestra plataforma facilita mucho las cosas para mí.","Anfitrión, cliente de la plataforma"],["Que se puedan generar facturas compliant desde vuestra plataforma ha sido el factor decisivo para no irme a la competencia.","Anfitrión, cliente de la plataforma"]],
+        sRes:["Benchmark de facturas de Holded y Stripe para definir qué necesita una factura válida.", "Sesiones de test con 10 usuarios y beta testers.", "El hallazgo clave: muchos anfitriones gestionan varias empresas, y cada una necesita su propia configuración fiscal."],
+        sFlow:["Borrador automático tras el check-out","El anfitrión lo revisa y corrige","Validación","Cierre","Envío a la administración"],
+        sFlowP:"Si falta algún dato, el anfitrión recibe un aviso antes de cerrar la factura. Una vez cerrada, solo se corrige con una rectificativa.",
+        sDecH:"De la configuración al envío, dentro de la plataforma",
+        sDec:[["El mismo flujo en todos los países", "Mantener un flujo por país habría sido muy costoso de mantener. Decidimos uno solo, con los mismos pasos en España, Italia y Francia. Solo cambia la conexión con cada sistema oficial."], ["Dos formas de usarlo", "El anfitrión elige si envía sus facturas a la administración desde la plataforma o solo emite una factura válida. Si las envía, no hay paso de plantilla, porque la aporta el proveedor de facturación electrónica."], ["Configuración por vendedor", "Las sesiones de test mostraron que muchos anfitriones gestionan varias empresas. Por eso separé la configuración en vendedores, plantillas y configuraciones. Cada configuración une un vendedor, una plantilla y unas reglas de cierre."], ["Validación antes de emitir", "Responde al segundo job: corregir los datos antes de que la factura sea definitiva. Si faltan datos del huésped, el borrador lo marca y ofrece un enlace para que el propio huésped los complete."], ["Cierre con confirmación", "Una factura cerrada ya no se puede editar y solo se corrige con una rectificativa. Por eso, antes de cerrar, una confirmación deja claras esas consecuencias."]],
+        sSolCap:"Pantalla principal del flujo (versión sin marca).",
+        solIntro:"Una herramienta de facturación integrada en la plataforma, con un único flujo para emitir facturas conformes en España, Italia y Francia y, si el anfitrión lo elige, enviarlas a la administración.",
+        solBul:[["Gestión de vendedores","Cada vendedor guarda sus datos fiscales, su país y el estado de su conexión con el sistema oficial."],["Los mismos pasos en cada país","La configuración es igual en España, Italia y Francia. Solo cambia el sistema oficial al que se conecta cada vendedor."],["Ciclo de vida de la factura","Borrador, validación, cierre y envío, con el estado de cada factura siempre visible."],["Conexión con los sistemas oficiales","VeriFactu, SdI o PA, con avisos claros mientras la conexión se completa."]], bento:["Un flujo, tres sistemas oficiales","Selección de alojamientos","Vista previa en cada idioma"],
+        decL:"Decisiones clave",
+        ai:{"h": "La IA me permitió analizar los tests y prototipar sin frenar el plazo de España", "intro": "Con un plazo legal fijo y sin PM, usé la IA para ganar tiempo en las tareas de análisis, redacción y prototipado. Las decisiones de diseño siguieron siendo mías.", "rows": [["Síntesis de tests", "Agrupé por tema y frecuencia las notas de los tests con usuarios y beta testers para detectar las fricciones principales.", ["Claude"], "Así apareció a tiempo el patrón de anfitriones con varias empresas, que llevó al rediseño."], ["UX writing", "Usé skills de IA para redactar y revisar avisos, errores y confirmaciones con un tono coherente.", ["Claude"], "Mensajes legales claros y revisiones más rápidas con producto."], ["Sistema de diseño", "Aceleré la creación de los componentes nuevos, como los estados de factura y los avisos, sobre el sistema de diseño.", ["Claude Code", "Cursor"], "Componentes listos antes para ingeniería."], ["Prototipado", "Construí prototipos interactivos del flujo de configuración para presentarlo y validarlo.", ["Claude Code", "Cursor"], "Feedback sobre la interacción real antes de desarrollar."]], "critT": "Dónde puse el criterio", "crit": "Revisé cada hallazgo contra las sesiones originales, ajusté los textos a la normativa de cada país y descarté las propuestas que no encajaban con el sistema de diseño."},
+        sOutH:"Impacto",
+        results:[["40 %", "de los anfitriones elegibles activó la facturación"], ["100 %", "de las facturas enviadas, aceptadas por la administración"], ["80 s", "de media para dar de alta un vendedor"]],
+        sOutP:"Lanzado en España en enero de 2026 y después en Italia y Francia, con el mismo flujo. Para algunos clientes fue además un motivo para quedarse: uno nos dijo que había sido el factor decisivo para no irse a la competencia. La estructura por vendedor y por país deja el producto preparado para Alemania y Portugal.",
+        sLearnH:"Qué me llevo",
+        sLearnP:""
+      },
+      en:{
+        arc:{ctxL:"Context",ctxH:"Invoices with no legal validity and a deadline coming up",roleL:"My role",storyL:"Story",storyH:"A setup that works for any country",
+          storyP:"<p>In test sessions with 10 users and beta testers, we found that many hosts manage several companies, and each one needs its own tax setup. On top of that, the first version, with all the setup on a single screen, couldn't be taken to other countries. I proposed reworking the flow for the second version and convinced engineering to make the change: in V2, the first step is choosing the country.</p><p>With that, the product was built around five decisions:</p>",
+          resL:"Results",resH:"Compliant invoicing in three countries, with the same flow",quotesL:"What customers say"},
+        sProbH:"The challenge",
+        sProbC:"Hosts needed invoices that complied with their country's regulations, and the ones the product generated didn't.",
+        sProbP:"<p>The product's invoices weren't valid as legal documents: they had no sequential numbering, the date changed on every download and their details couldn't be corrected. On top of that, Spain, Italy and France were starting to require submission to VeriFactu, SdI and Plateforme Agréée. Spain set the first deadline, January 2026.</p>",
+        sRoleH:"What I owned",
+        sRoleP:"I led the design end to end. The PM left during the first month and I took on their work too, working directly with engineering and the Product Marketing Manager.",
+        sRoleList:[],
+        sProcH:"How I got there",
+        sJtbd:["<b>When</b> I get paid for a booking, <b>I want to</b> issue a legal invoice without knowing the regulations, <b>so I can</b> stay out of trouble with the tax authorities.","<b>When</b> an invoice has the wrong details, <b>I want to</b> correct them, <b>so</b> the document is valid."],
+        v1L:"First version", v1P:"<p>In V1, all the setup was on a single screen and couldn't be taken to other countries. In V2, the first step is choosing the country, which only determines which official system the seller connects to. We also improved the notifications for invoices left unclosed because of missing details.</p>",
+        quotesL:"What customers told us", quotes:[["Being able to submit invoices to the tax office through your platform makes things much easier for me.","Host, platform customer"],["Being able to generate compliant invoices from your platform was the deciding factor for not moving to a competitor.","Host, platform customer"]],
+        sRes:["Benchmark of invoices from Holded and Stripe to define what a valid invoice needs.", "Test sessions with 10 users and beta testers.", "The key finding: many hosts manage several companies, and each one needs its own tax setup."],
+        sFlow:["Automatic draft after check-out","Host reviews and corrects","Validation","Close","Submit to the authorities"],
+        sFlowP:"If any details are missing, the host is notified before closing the invoice. Once closed, it can only be corrected with a credit note.",
+        sDecH:"From setup to submission, inside the platform",
+        sDec:[["The same flow in every country", "A flow per country would have been very costly to maintain. We decided on a single one, with the same steps in Spain, Italy and France. Only the connection to each official system changes."], ["Two ways to use it", "Hosts choose whether to submit their invoices to the authorities from the platform or just issue a valid invoice. If they submit, there's no template step, because the e-invoicing provider supplies it."], ["Setup per seller", "Test sessions showed that many hosts manage several companies. So I split setup into sellers, templates and configurations. Each configuration links a seller, a template and a set of closing rules."], ["Validation before issuing", "This answers the second job: fixing details before the invoice is final. If guest details are missing, the draft flags it and offers a link for the guest to complete them."], ["Closing with confirmation", "A closed invoice can no longer be edited and can only be corrected with a credit note. So before closing, a confirmation makes those consequences clear."]],
+        sSolCap:"Main screen of the flow (unbranded version).",
+        solIntro:"An invoicing tool built into the platform, with a single flow to issue compliant invoices in Spain, Italy and France and, if the host chooses to, submit them to the authorities.",
+        solBul:[["Seller management","Each seller stores its tax details, its country and the status of its connection to the official system."],["The same steps in every country","Setup is the same in Spain, Italy and France. Only the official system each seller connects to changes."],["Invoice lifecycle","Draft, validation, closing and submission, with each invoice's status always visible."],["Connection to official systems","VeriFactu, SdI or PA, with clear notices while the connection is completed."]], bento:["One flow, three official systems","Listing selection","Preview in each language"],
+        decL:"Key decisions",
+        ai:{"h": "AI let me analyse tests and prototype without slowing down Spain's deadline", "intro": "With a fixed legal deadline and no PM, I used AI to save time on analysis, writing and prototyping. The design decisions stayed mine.", "rows": [["Test synthesis", "I grouped notes from user and beta tests by theme and frequency to spot the main friction points.", ["Claude"], "The pattern of hosts with several companies surfaced in time and led to the redesign."], ["UX writing", "I used AI skills to write and review alerts, errors and confirmations with a consistent tone.", ["Claude"], "Clear legal messages and faster reviews with product."], ["Design system", "I sped up building new components, such as invoice statuses and alerts, on top of the design system.", ["Claude Code", "Cursor"], "Components ready sooner for engineering."], ["Prototyping", "I built interactive prototypes of the setup flow to present and validate it.", ["Claude Code", "Cursor"], "Feedback on real interaction before development."]], "critT": "Where my judgement came in", "crit": "I checked every finding against the original sessions, adapted the copy to each country's regulations and dropped suggestions that didn't fit the design system."},
+        sOutH:"Impact",
+        results:[["40%", "of eligible hosts turned on invoicing"], ["100%", "of submitted invoices accepted by the authorities"], ["80 s", "on average to add a seller"]],
+        sOutP:"Launched in Spain in January 2026 and then in Italy and France, with the same flow. For some customers it was also a reason to stay: one told us it was the deciding factor for not moving to a competitor. The per-seller, per-country structure leaves the product ready for Germany and Portugal.",
+        sLearnH:"What I take away",
+        sLearnP:""
+      }
+    } },
+  { id:"booking-website", color:"var(--c-lilac)", mock:"hero", heroImg:"bw-hero",
+    title:{es:"Una web de reservas directas para cada anfitrión",en:"A direct booking website for every host"},
+    summary:{es:"Un constructor de webs de reservas directas dentro de la plataforma, con un plan gratis y otro Pro. El 6 % de los anfitriones pasó al plan Pro de pago.",
+             en:"A direct booking website builder inside the platform, with a free plan and a Pro plan. 6% of hosts upgraded to the paid Pro plan."},
+    company:{es:"SaaS B2B de alquiler vacacional · Booking Website",en:"B2B vacation rental SaaS · Booking Website"}, year:"2026", role:"Product Designer", team:{es:"PM e ingeniería",en:"PM and engineering"},
+    kpis:{es:[["6 %","pasó al plan Pro"],["2","planes: gratis y Pro"]],en:[["6%","upgraded to Pro"],["2","plans: free and Pro"]]},
+    brief:{problem:{es:"",en:""},role:{es:"",en:""},decisions:{es:"",en:""},outcome:{es:"",en:""}},
+    body:{
+      es:{
+        arc:{ctxL:"Contexto",ctxH:"Reservas que dependían de las OTAs",roleL:"Mi papel",storyL:"Historia",storyH:"Dos planes y una configuración más clara",
+          storyP:"<p>Para decidir qué debía ofrecer el constructor, analicé las home pages de las webs de reserva de los clientes y las descripciones de sus alojamientos. Con eso definí qué secciones necesitaban las plantillas. También hice un inventario de todos los ajustes de la web y los reorganicé con un card sorting.</p><p>Al pasar las pantallas al nuevo sistema de diseño, propuse cambios en la experiencia que no estaban en el alcance inicial y diseñé los componentes nuevos que hacían falta. De ahí salieron estas decisiones:</p>",
+          figStory:["m-pair",[["bw-before","a","Antes"],["bw-after","b","Después"]]],
+          resL:"Resultados",resH:"Un producto de pago nuevo dentro de la plataforma",
+          figRes:["m-side",[["bw-list","a"],["bw-home","b"]]]},
+        sProbP:"<p>Para conseguir reservas, los anfitriones dependían de las OTAs, que se quedan una comisión por cada una. Con una web propia reciben reservas directas y no pierden ese dinero. La plataforma ya tenía una web de reservas, pero era básica: solo permitía elegir algunos colores y si los botones tenían esquinas redondeadas, y usaba nuestro dominio. Además, la competencia ya ofrecía webs más completas y había que cerrar ese hueco.</p>",
+        sRoleP:"Trabajé mano a mano con la PM y con ingeniería. Me encargué de todo el diseño de la experiencia y de los cambios que necesitó nuestra plataforma para integrar el nuevo constructor, y aproveché para pasar esas pantallas al nuevo sistema de diseño y mejorar su experiencia.",
+        sDec:[["Un plan gratis y uno Pro", "Mantuvimos la web básica como plan gratis y lanzamos el constructor como plan Pro, con plantillas, editor completo y herramientas de IA, SEO y marketing. El Pro es gratis hasta que el anfitrión publica su web."], ["Ajustes en un menú lateral", "Con el card sorting reorganicé todos los ajustes. Las pestañas de antes pasaron a un menú lateral con subpáginas, para que cada página de la web se configure por separado."], ["Vista previa en directo", "Junto a la configuración, una vista previa de escritorio y móvil muestra cada cambio al momento, sin salir de la pantalla."], ["Alojamientos en una tabla ordenable", "Antes se elegían en una cuadrícula de tarjetas. Ahora están en una tabla en la que se ordenan arrastrándolos. En los tests con usuarios, la mayoría la prefirió frente a la otra opción, y completaron las tareas en unos 30–40 segundos de media."], ["Dominio propio guiado", "El anfitrión elige entre el dominio gratuito o el suyo. Si usa el suyo, la pantalla le indica qué registro DNS copiar y le enlaza a una guía."]],
+        ai:{h:"La IA me permitió testear varias versiones con usuarios antes de decidir",rows:[["Exploración","Generé distintas versiones del componente de selección de alojamientos y del de asignación de categorías.",["Claude Code"]],["Tests con usuarios","Convertí esas versiones en prototipos interactivos y los testeamos con usuarios en Useberry para elegir con resultados medibles.",["Claude Code","Useberry"]],["Handoff","Construí un prototipo interactivo del flujo para el handoff a ingeniería.",["Claude Code"]]]},
+        results:[["6 %","de los anfitriones pasó al plan Pro de pago"]],
+        sOutP:"El constructor se lanzó con los dos planes y el 6 % de los anfitriones pasó al Pro. Las pantallas de la web de reservas quedaron además migradas al nuevo sistema de diseño."
+      },
+      en:{
+        arc:{ctxL:"Context",ctxH:"Bookings that depended on OTAs",roleL:"My role",storyL:"Story",storyH:"Two plans and a clearer setup",
+          storyP:"<p>To decide what the builder should offer, I analysed the home pages of customers' booking websites and their listing descriptions. With that, I defined which sections the templates needed. I also inventoried every website setting and reorganised them with a card sort.</p><p>When moving the screens to the new design system, I proposed experience changes that weren't in the original scope and designed the new components they needed. That led to these decisions:</p>",
+          figStory:["m-pair",[["bw-before","a","Before"],["bw-after","b","After"]]],
+          resL:"Results",resH:"A new paid product inside the platform",
+          figRes:["m-side",[["bw-list","a"],["bw-home","b"]]]},
+        sProbP:"<p>To get bookings, hosts depended on OTAs, which take a commission on each one. With their own website they get direct bookings and keep that money. The platform already had a booking website, but it was basic: hosts could only pick a few colours and whether buttons had rounded corners, and it used our domain. On top of that, competitors already offered more complete websites, and we needed to close that gap.</p>",
+        sRoleP:"I worked hand in hand with the PM and engineering. I owned the whole experience design and the changes our platform needed to integrate the new builder, and I used that to move those screens to the new design system and improve their experience.",
+        sDec:[["A free plan and a Pro plan", "We kept the basic website as the free plan and launched the builder as the Pro plan, with templates, a full editor, and AI, SEO and marketing tools. Pro is free until the host publishes their website."], ["Settings in a side menu", "With the card sort, I reorganised every setting. The old tabs became a side menu with sub-pages, so each page of the website is set up separately."], ["Live preview", "Next to the settings, a desktop and mobile preview shows every change instantly, without leaving the screen."], ["Listings in a sortable table", "Before, listings were picked from a card grid. Now they're in a table where they can be reordered by dragging. In user tests, most participants preferred it over the other option, and they completed the tasks in around 30–40 seconds on average."], ["Guided custom domain", "Hosts choose between the free domain or their own. If they use their own, the screen shows which DNS record to copy and links to a guide."]],
+        ai:{h:"AI let me test several versions with users before deciding",rows:[["Exploration","I generated different versions of the listing selection component and the category assignment component.",["Claude Code"]],["User testing","I turned those versions into interactive prototypes and we tested them with users in Useberry to choose based on measurable results.",["Claude Code","Useberry"]],["Handoff","I built an interactive prototype of the flow for the engineering handoff.",["Claude Code"]]]},
+        results:[["6%","of hosts upgraded to the paid Pro plan"]],
+        sOutP:"The builder launched with both plans, and 6% of hosts upgraded to Pro. The booking website screens were also migrated to the new design system."
+      }
+    } },
+  { id:"skills-ia", color:"var(--c-orange)", mock:"hero", heroImg:"sk-catalog",
+    title:{es:"Siete diseñadores, un mismo criterio",en:"Seven designers, one shared standard"},
+    summary:{es:"Creé la mayoría de las skills de IA que usaba el equipo de diseño para analizar entrevistas, aplicar los principios de diseño y testear prototipos. Analizar 15 entrevistas pasó de día y medio a hora y media.",
+             en:"I created most of the AI skills the design team used to analyse interviews, apply our design principles and test prototypes. Analysing 15 interviews went from a day and a half to an hour and a half."},
+    company:{es:"SaaS B2B de alquiler vacacional · Equipo de diseño",en:"B2B vacation rental SaaS · Design team"}, year:"2026", role:"Product Designer", team:{es:"Equipo de 7 diseñadores",en:"Team of 7 designers"},
+    kpis:{es:[["1,5 h","para analizar 15 entrevistas"],["7","diseñadores"]],en:[["1.5 h","to analyse 15 interviews"],["7","designers"]]},
+    brief:{problem:{es:"",en:""},role:{es:"",en:""},decisions:{es:"",en:""},outcome:{es:"",en:""}},
+    body:{
+      es:{
+        arc:{ctxL:"Contexto",ctxH:"Un equipo que crecía y diseñaba cada vez más distinto",roleL:"Mi papel",storyL:"Historia",storyH:"El criterio del equipo, convertido en herramientas",
+          storyP:"<p>Cada skill recoge una parte del criterio del equipo para que la IA lo aplique igual, la use quien la use:</p>",
+          figStory:["m-side",[["sk-review","a"],["bw-after","b"]],"Ejemplo ilustrativo: revisión generada con la skill de principios de diseño sobre una pantalla de la booking website."],
+          resL:"Resultados",resH:"Más rápido y más coherente",figRes:false},
+        sProbP:"<p>A medida que el equipo crecía, cada vez más funcionalidades compartían bases comunes, como la forma de escribir o la accesibilidad, y era más difícil mantenerlas iguales entre siete diseñadores. Además, analizar una ronda de 15 entrevistas nos llevaba día y medio.</p>",
+        sRoleP:"Creé la mayoría de las skills, en una iniciativa acordada con el resto del equipo, y las compartimos con todo el equipo. Presentábamos cada skill nueva en las críticas de diseño semanales y, como era algo que todos querían usar, pasaron enseguida al trabajo diario.",
+        sDec:[["Análisis de entrevistas","Convierte la transcripción o las notas de una entrevista en un documento de análisis con la misma estructura para todo el equipo."],["Principios de diseño","Recoge los cinco principios que definimos en un workshop del equipo a partir de seis perfiles de usuario de la plataforma. Los aplica en cada revisión con un código de color (verde, naranja o rojo) y obliga a nombrar el principio en cada comentario, para que las revisiones no dependan del gusto de cada diseñador."],["Panel de personas","Personas construidas a partir de entrevistas reales reaccionan a un diseño antes de testearlo con usuarios. Cada una rechaza los diseños por motivos distintos, para que el panel no se limite a dar la razón. Así llegábamos a los tests con mejores preguntas."],["Tests en Useberry","Conecta un prototipo interactivo construido con IA a Useberry para medir si los usuarios completan cada tarea. La usé en los tests de la booking website, con prototipos hechos con Claude Code."],["Breakpoints y componentes","Ingeniería pidió tener claros los breakpoints y cómo se comporta cada componente en cada uno. Creé una skill a partir de un artefacto que lo documentaba, para que diseño e ingeniería trabajaran con la misma referencia."]],
+        results:[["1,5 h","para analizar 15 entrevistas, frente a día y medio antes"],["7","diseñadores trabajando con las mismas skills"]],
+        sOutP:"Analizar una ronda de 15 entrevistas pasó de día y medio a hora y media. Los principios de diseño pasaron a estar presentes en cada revisión, y el UX writing se volvió uniforme entre los siete diseñadores."
+      },
+      en:{
+        arc:{ctxL:"Context",ctxH:"A growing team designing more and more differently",roleL:"My role",storyL:"Story",storyH:"The team's judgement, turned into tools",
+          storyP:"<p>Each skill captures part of the team's judgement so AI applies it the same way, whoever uses it:</p>",
+          figStory:["m-side",[["sk-review","a"],["bw-after","b"]],"Illustrative example: a review generated with the design principles skill on a booking website screen."],
+          resL:"Results",resH:"Faster and more consistent",figRes:false},
+        sProbP:"<p>As the team grew, more and more features shared common foundations, like how we write or accessibility, and keeping them consistent across seven designers got harder. On top of that, analysing a round of 15 interviews took us a day and a half.</p>",
+        sRoleP:"I created most of the skills, in an initiative agreed with the rest of the team, and we shared them with the whole team. We presented each new skill in our weekly design critiques and, since everyone wanted to use them, they quickly became part of daily work.",
+        sDec:[["Interview analysis","Turns an interview transcript or notes into an analysis document with the same structure for the whole team."],["Design principles","Captures the five principles we defined in a team workshop based on six of the platform's user profiles. It applies them in every review with a colour code (green, orange or red) and requires naming the principle in each comment, so reviews don't depend on each designer's taste."],["Persona panel","Personas built from real interviews react to a design before it's tested with users. Each one rejects designs for different reasons, so the panel doesn't just agree. That way we got to tests with better questions."],["Useberry tests","Connects an AI-built interactive prototype to Useberry to measure whether users complete each task. I used it for the booking website tests, with prototypes built in Claude Code."],["Breakpoints and components","Engineering asked for clarity on the breakpoints and how each component behaves at each one. I created a skill from an artifact that documented it, so design and engineering worked from the same reference."]],
+        results:[["1.5 h","to analyse 15 interviews, down from a day and a half"],["7","designers working with the same skills"]],
+        sOutP:"Analysing a round of 15 interviews went from a day and a half to an hour and a half. Design principles became part of every review, and UX writing became consistent across the seven designers."
+      }
+    } }
+];
+
+const PROFILE=`Julia Besada es Product Designer & Builder especializada en SaaS y fintech. Vive en Bilbao y está abierta a trabajar en remoto (EMEA). Tiene más de 5 años de experiencia diseñando productos web y móviles complejos, de discovery a lanzamiento.
+Hostaway (2023–2026), software de gestión para alquiler vacacional (app iOS/Android y web): empezó como única diseñadora de seis áreas de producto (luego tres, dos y una a medida que crecía el equipo) y se especializó en Pagos. Priorizó peticiones del roadmap con producto e ingeniería. Diseñó facturación conforme a la normativa europea (lanzada en España, Italia y Francia), migró áreas clave al nuevo sistema de diseño, diseñó integraciones con terceros, facilitó más de 10 talleres de discovery (JTBD, journey mapping) e introdujo la IA en el flujo del equipo: skills de IA para UX writing, análisis de tests de usuario con IA, implementación más rápida del sistema de diseño y prototipos construidos con IA para presentar ideas.
+Gibobs Allbanks (2021–2023), fintech española de financiación e hipotecas: diseñó productos móviles, web y de administración interna, creó el sistema de diseño desde cero con QA de diseño antes de cada lanzamiento, co-creó un curso de educación hipotecaria, diseñó el flujo de certificados de solvencia y rediseñó la herramienta interna de los analistas.
+Antes (2018–2020): fundadora de Monte das Flores (diseño de servicio, gestión y estrategia digital) y Account Manager / Catalog Specialist en Ticketea by Eventbrite, Eventbrite y StubHub.
+Forma de trabajar: empieza por la investigación (10–15 entrevistas y tests de usabilidad por proyecto), diseña flujos y sistemas que funcionen para usuarios y negocio, y trabaja muy cerca de producto e ingeniería. La IA es una herramienta fundamental en todo su proceso de diseño: la usa para analizar y sintetizar entrevistas y tests de usabilidad, mejorar el UX writing, agilizar el trabajo con el sistema de diseño y preparar prototipos interactivos para validar ideas con usuarios y stakeholders.
+Herramientas: Figma, Claude Code, Cursor, GitHub, Useberry, Hotjar, Google Analytics, Pendo, PostHog, Jira, ClickUp, Confluence, CSS.
+Formación: Administración de Empresas (Universidad de Santiago de Compostela, 2017), Bootcamp UX/UI (UXER School, 2020). Certificaciones: Design Systems with Figma (Figma Camp, 2023) y Claude Code (Anthropic, 2026).
+Idiomas: español nativo, inglés C1.
+Casos de estudio:
+${CASES.map(c=>`- ${c.title.es} (${c.company.es}, ${c.year}): ${c.summary.es}`).join("\n")}
+Por dónde empezar: facturación si buscan flujos complejos con requisitos legales o pagos; booking website si buscan producto y negocio; skills de IA si les interesa cómo usa la IA con un equipo.
+Busca: un puesto de Product Designer, en remoto (EMEA) o desde Bilbao. Contacto: juliabvinhas@gmail.com o LinkedIn.`;
+
+/* ---------- idioma ---------- */
+let lang="es";
+try{ const s=localStorage.getItem("lang"); lang = s || ((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en"); }catch(e){ lang=(navigator.language||"es").toLowerCase().startsWith("es")?"es":"en"; }
+const t=k=>T[lang][k] ?? T.es[k] ?? k;
+const L=v=>(v && typeof v==="object" && !Array.isArray(v)) ? (v[lang] ?? v.es) : v;
+
+/* ---------- portadas ---------- */
+const coverGeneric=(c,cls="")=>`<div class="cover ${cls}" style="--c:${c.color}" aria-hidden="true"><div class="screen"><div class="side"><div class="bar d" style="width:70%"></div><div class="bar"></div><div class="bar" style="width:80%"></div><div class="bar" style="width:60%"></div></div>
+  <div class="main"><div class="bar d" style="width:40%;height:9px"></div><div class="bar" style="width:70%"></div><div class="rowx"><div></div><div></div><div></div></div><div class="bar" style="width:90%"></div><div class="bar" style="width:75%"></div><div class="bar" style="width:55%"></div></div></div></div>`;
+
+
+/* ---------- pantallas sin marca (datos inventados) ---------- */
+const MS={
+es:{inv:"Facturas",settingsT:"Ajustes de facturación",draft:"Borrador",notValid:"No válida",cur:"459,20 EUR",editBuyer:"Editar datos del cliente",closeSubmit:"Cerrar y enviar",
+  alert:"<b>El huésped no ha enviado sus datos de facturación.</b> Faltan 2 datos: tipo de documento y número.",copyLink:"Copiar enlace para el huésped",
+  buyer:"Datos del cliente",billTo:"Facturar a",idType:"Tipo de documento",idNum:"Número de documento",email:"Email",country:"País",missing:"Falta",spain:"España",
+  stay:"Datos de la reserva",listing:"Alojamiento",dates:"Fechas",datesV:"5–15 nov 2025",
+  addCo:"Añadir empresa",prev:"Anterior",next:"Siguiente",locked:"Una vez guardada, esta información no se podrá editar.",
+  q:"¿Quieres enviar las facturas a la administración desde la plataforma?",yes:"Sí, enviarlas automáticamente",yesS:"Al cerrarlas, las enviaremos al sistema oficial de tu país.",no:"No, solo quiero la factura",noS:"Tú te encargas de enviarlas a la administración.",
+  coMeta:"NIF B12345678 · España",sub:"Envío activo",nav:["Ajustes generales","Cierre de facturas","Alojamientos","Canales"],numbering:"Numeración de facturas",format:"Formato",formatV:"Prefijo + número",start:"Número inicial",prefix:"Prefijo",
+  credit:"Numeración de rectificativas",save:"Guardar",search:"Buscar",
+  closeT:"Cerrar y enviar",closeP1:"Una vez cerrada, <b>no podrás editar esta factura</b>. Si necesitas cambiarla, tendrás que emitir una factura rectificativa.",closeP2:"Al cerrarla, <b>se enviará automáticamente a la administración</b>.",cancel:"Cancelar",
+  side:["Resumen","Calendario","Mensajes","Reservas","Alojamientos","Informes","Pagos de huéspedes","Tareas","Reseñas"],
+  flStatus:"Estado de cada empresa",flStatusP:"Cada empresa se conecta al sistema oficial de su país.",flToastT:"Conexión en curso",flToastP:"La conexión con el sistema oficial puede tardar hasta 72 horas. Puedes seguir configurando y te avisaremos cuando esté lista.",
+  an:{draft:["El estado «No válida» aparece junto al importe, antes que cualquier otra cosa.","El aviso dice exactamente qué datos faltan.","Un enlace para que el huésped complete sus datos, sin intercambiar emails.","Los campos que faltan se resaltan justo donde hay que corregirlos."],
+    sellers:["Cada vendedor muestra si envía sus facturas a la administración y con qué sistema.","El estado de cada conexión se ve de un vistazo: registrada, en proceso, rechazada, error o borrador.","Configuraciones, vendedores y plantillas se gestionan desde el mismo sitio."],
+    mode:["Cada opción explica qué pasará después, no solo qué es.","Una vez conectado a VeriFactu, el vendedor queda bloqueado para evitar envíos con datos erróneos.","El paso de conexión solo aparece si el vendedor envía sus facturas a la administración."],
+    sellerForm:["Los datos que no se podrán editar después (NIF y país) se avisan justo debajo del campo.","La conexión con VeriFactu puede tardar hasta 72 horas: se dice claramente y se avisa cuando está lista."],
+    close:["La consecuencia irreversible se destaca en negrita.","El botón principal repite la acción exacta: «Cerrar y enviar»."]},
+  lanes:["Huésped","Anfitrión","Plataforma","Sistema oficial"],
+ft:{t1:"1 · Configuración",c1:"Hay dos caminos para empezar a facturar. Los dos terminan en una configuración que une un vendedor, una plantilla y las reglas de cierre.",
+    opts:[["Opción 1 · Todo por separado",["Crea sus vendedores.","Crea sus plantillas.","Crea la configuración."]],["Opción 2 · Desde la configuración",["Empieza por la configuración.","Crea el vendedor sin salir del flujo."]]],
+    jT:"En la configuración",join:["Elige el vendedor.","Si el vendedor envía facturas a la administración, no hay paso de plantilla: la aporta el proveedor con QR. Si no, elige o crea una plantilla, o usa la de por defecto.","Define el cierre, los alojamientos y los canales. La configuración queda activa."],
+    t2:"2 · Ciclo de vida de la factura",life:[["Plataforma","Crea el borrador al check-out o cuando el anfitrión cierra a mano."],["Anfitrión","Revisa el borrador y, si los datos no son correctos, los edita."],["Plataforma","Valida la factura."],["Anfitrión · Huésped","Si no es válida, el anfitrión recibe un aviso y comparte un enlace para que el huésped complete sus datos."],["Anfitrión","Cierra y envía la factura, con una confirmación previa."],["Sistema oficial","La plataforma envía la factura y VeriFactu, SdI o PA la registra."]],
+    stT:"Estado de la factura",st:["Borrador","No válida","Cerrada","Enviada"]},
+  fsT:"1 · Configuración",fsCap:"Hay dos caminos para empezar a facturar. Los dos terminan en una configuración que une un vendedor, una plantilla y las reglas de cierre.",flT:"2 · Ciclo de vida de la factura",
+  fs:{o1:"OPCIÓN 1 · TODO POR SEPARADO",o2:"OPCIÓN 2 · DESDE LA CONFIGURACIÓN",a1:["Crea sus vendedores"],a2:["Crea sus plantillas"],b1:["Empieza por la","configuración"],b2:["Crea el vendedor","sin salir del flujo"],grp:"CONFIGURACIÓN",c1:["Elige el vendedor"],d:["¿El vendedor","envía facturas?"],t1:["Elige o crea una plantilla,","o usa la de por defecto"],t2:["Sin paso de plantilla:","la aporta el proveedor con QR"],end:["Configuración activa"],ends:"Cierre, alojamientos y canales",yes:"Sí",no:"No"},
+  fl:{p1:["Crea el borrador"],p1s:"Al check-out o al cerrar a mano",a1:["Revisa el borrador"],d1:["¿Datos","correctos?"],loop:"No · edita los datos",p2:["Valida la factura"],d2:["¿Válida?"],a3:["Recibe el aviso y","comparte el enlace"],h1:["Completa sus datos","desde el enlace"],a4:["Cierra y envía"],a4s:"Con confirmación",p3:["Envía la factura"],s1:["Registra la factura"],s1s:"VeriFactu · SdI · PA",yes:"Sí",no:"No",stTitle:"Estado de la factura",st:["Borrador","No válida","Cerrada","Enviada"]},
+  setT:"Ajustes",setNav:["Configuraciones","Empresas","Plantillas"],addTpl:"Añadir plantilla",addSeller:"Añadir empresa",addCfg:"Añadir configuración",filter:"Filtrar",searchL:"Buscar alojamientos",
+  cols:["Empresa","NIF","País","Envío","Sistema","Estado"],yesNo:["Sí","No"],none:"—",stLbl:{reg:"Registrada",ok:"Completada",na:"No aplica",err:"Rechazada",pr:"En proceso",dr:"Borrador"},countries:["España","Italia","Francia","EE. UU."],
+  sellerInfo:"Datos de la empresa",sellerSub:"Introduce los datos fiscales completos.",fName:"Razón social",fTax:"NIF",fTaxS:"No se puede editar una vez creada",fAddr:"Dirección",fCity:"Ciudad",fZip:"CP",fCountry:"País",fPhone:"Teléfono",fEmail:"Email",finish:"Finalizar",
+  ph:{t:"Datos de facturación",p:"Casa Mar S.L. necesita estos datos para emitir tu factura.",name:"Nombre completo",idType:"Tipo de documento",idTypeV:"DNI",idNum:"Número de documento",addr:"Dirección",addrV:"Calle Mayor 12, Madrid",send:"Enviar datos"},
+  f:["Borrador automático","tras el check-out","El anfitrión revisa","¿Válida?","Cierre","Envío a la administración","Aviso al anfitrión","Sí","No"]},
+en:{inv:"Invoices",settingsT:"Invoice settings",draft:"Draft",notValid:"Not valid",cur:"EUR 459.20",editBuyer:"Edit buyer details",closeSubmit:"Close & submit",
+  alert:"<b>The guest hasn't submitted their billing details.</b> 2 missing: ID type and ID number.",copyLink:"Copy link for the guest",
+  buyer:"Buyer details",billTo:"Bill to",idType:"ID type",idNum:"ID number",email:"Email",country:"Country",missing:"Missing",spain:"Spain",
+  stay:"Reservation details",listing:"Listing",dates:"Dates",datesV:"Nov 5–15, 2025",
+  addCo:"Add company",prev:"Previous",next:"Next",locked:"Once saved, this information can't be edited.",
+  q:"Do you want to submit invoices to the tax authorities from the platform?",yes:"Yes, submit them automatically",yesS:"Once closed, we'll send them to your country's official system.",no:"No, I just need the invoice",noS:"You'll handle the submission yourself.",
+  coMeta:"Tax ID B12345678 · Spain",sub:"Submission on",nav:["General settings","Closing settings","Listings","Channels"],numbering:"Invoice numbering",format:"Format",formatV:"Prefix + number",start:"Starting number",prefix:"Prefix",
+  credit:"Credit note numbering",save:"Save",search:"Search",
+  closeT:"Close & submit",closeP1:"Once closed, <b>you won't be able to edit this invoice</b>. To change it, you'll need to issue a credit note.",closeP2:"When you close it, <b>it will be submitted to the tax authorities automatically</b>.",cancel:"Cancel",
+  side:["Overview","Calendar","Inbox","Reservations","Listings","Reporting","Guest payments","Tasks","Reviews"],
+  flStatus:"Status per company",flStatusP:"Each company connects to its country's official system.",flToastT:"Connection in progress",flToastP:"Connecting to the official system can take up to 72 hours. You can keep setting up and we'll let you know when it's ready.",
+  an:{draft:["The «Not valid» status sits next to the amount, before anything else.","The alert says exactly which details are missing.","A link for the guest to complete their details, with no email back-and-forth.","Missing fields are highlighted right where they need fixing."],
+    sellers:["Each seller shows whether it submits invoices to the tax authorities, and through which system.","Each connection's status is visible at a glance: registered, processing, rejected, error or draft.","Settings, sellers and templates are managed in one place."],
+    mode:["Each option explains what happens next, not just what it is.","Once connected to VeriFactu, the seller is locked to prevent submissions with wrong data.","The connection step only appears if the seller submits invoices to the authorities."],
+    sellerForm:["Details that can't be edited later (tax ID and country) are flagged right below the field.","Connecting to VeriFactu can take up to 72 hours: it says so plainly and notifies hosts when it's ready."],
+    close:["The irreversible consequence is highlighted in bold.","The main button repeats the exact action: «Close & submit»."]},
+  lanes:["Guest","Host","Platform","Official system"],
+ft:{t1:"1 · Setup",c1:"There are two ways to start invoicing. Both end in a configuration that links a seller, a template and the closing rules.",
+    opts:[["Option 1 · Step by step",["Creates sellers.","Creates templates.","Creates the configuration."]],["Option 2 · From the configuration",["Starts with the configuration.","Creates the seller without leaving the flow."]]],
+    jT:"In the configuration",join:["Picks the seller.","If the seller submits invoices to the authorities, there's no template step: the provider supplies one with a QR code. If not, they pick or create a template, or use the default one.","Sets closing, listings and channels. The configuration goes live."],
+    t2:"2 · Invoice lifecycle",life:[["Platform","Creates the draft at check-out or when the host closes it manually."],["Host","Reviews the draft and edits any incorrect details."],["Platform","Validates the invoice."],["Host · Guest","If it isn't valid, the host is notified and shares a link so the guest can complete their details."],["Host","Closes and submits the invoice, after a confirmation."],["Official system","The platform submits the invoice and VeriFactu, SdI or PA registers it."]],
+    stT:"Invoice status",st:["Draft","Not valid","Closed","Submitted"]},
+  fsT:"1 · Setup",fsCap:"There are two ways to start invoicing. Both end in a configuration that links a seller, a template and the closing rules.",flT:"2 · Invoice lifecycle",
+  fs:{o1:"OPTION 1 · STEP BY STEP",o2:"OPTION 2 · FROM THE CONFIGURATION",a1:["Creates sellers"],a2:["Creates templates"],b1:["Starts with the","configuration"],b2:["Creates the seller","without leaving"],grp:"CONFIGURATION",c1:["Picks the seller"],d:["Does it submit","invoices?"],t1:["Picks or creates a template,","or uses the default"],t2:["No template step: the","provider's QR template"],end:["Configuration live"],ends:"Closing, listings and channels",yes:"Yes",no:"No"},
+  fl:{p1:["Creates the draft"],p1s:"At check-out or when closed manually",a1:["Reviews the draft"],d1:["Details","correct?"],loop:"No · edits the details",p2:["Validates the invoice"],d2:["Valid?"],a3:["Gets notified and","shares the link"],h1:["Completes their","details via the link"],a4:["Closes & submits"],a4s:"With confirmation",p3:["Submits the invoice"],s1:["Registers the invoice"],s1s:"VeriFactu · SdI · PA",yes:"Yes",no:"No",stTitle:"Invoice status",st:["Draft","Not valid","Closed","Submitted"]},
+  setT:"Settings",setNav:["Configurations","Companies","Templates"],addTpl:"Add template",addSeller:"Add company",addCfg:"Add configuration",filter:"Filter",searchL:"Search listings",
+  cols:["Company","Tax ID","Country","Submission","System","Status"],yesNo:["Yes","No"],none:"—",stLbl:{reg:"Registered",ok:"Completed",na:"Not applicable",err:"Rejected",pr:"Processing",dr:"Draft"},countries:["Spain","Italy","France","USA"],
+  sellerInfo:"Company details",sellerSub:"Enter the full tax details.",fName:"Legal name",fTax:"Tax ID",fTaxS:"Can't be edited once created",fAddr:"Address",fCity:"City",fZip:"ZIP code",fCountry:"Country",fPhone:"Phone",fEmail:"Email",finish:"Finish",
+  ph:{t:"Billing details",p:"Casa Mar S.L. needs these details to issue your invoice.",name:"Full name",idType:"ID type",idTypeV:"National ID",idNum:"ID number",addr:"Address",addrV:"12 Calle Mayor, Madrid",send:"Send details"},
+  f:["Automatic draft","after check-out","Host reviews","Valid?","Close","Submit to the authorities","Host is notified","Yes","No"]}};
+const mt=k=>MS[lang][k];
+const fld=(l,v,err,an)=>`<div class="m-f${err?" err":""}"${an?` data-anno="${an}"`:""}><span>${l}</span><b>${v}</b></div>`;
+const browser=(inner)=>`<div class="browser"><div class="b-bar"><span class="b-dots"><i></i><i></i><i></i></span><span class="b-nav">‹ ›</span><span class="b-url">app.yourpms.com</span></div>${inner}</div>`;
+const app=(content)=>{const sd=mt("side");
+  return `<div class="mock"><div class="m-app"><div class="m-side"><span class="m-logo"><i></i></span>
+    ${sd.map((n,i)=>`<span class="m-ni${i===6?" on":""}"><i></i>${n}</span>`).join("")}</div>
+    <div class="m-main">${content}</div></div></div>`;};
+const head=(crumb,title,btns,meta)=>`<div class="m-head"><div class="m-tl"><span class="m-crumb">← ${crumb}</span><span class="m-title">${title}</span>${meta||""}</div><div class="m-btns">${btns}</div></div>`;
+const lf=(l,v,req,sub,dis,an)=>`<span>${l}${req?" <em>*</em>":""}${sub?`<small>${sub}</small>`:""}</span><b${dis?' class="dis"':""}${an?` data-anno="${an}"`:""}>${v}</b>`;
+const draftBody=(pre)=>head(mt("inv"),mt("draft"),`<span class="m-btn">${mt("editBuyer")}</span><span class="m-btn p"${pre==="close"?' data-anno="close:2"':""}>${mt("closeSubmit")}</span>`,`<span class="m-meta"><span class="m-pill" data-anno="draft:1">${mt("notValid")}</span>${mt("cur")}</span>`)+`<div class="m-body">
+    <div class="m-alert" data-anno="draft:2"><span>${mt("alert")}</span><u data-anno="draft:3">${mt("copyLink")}</u></div>
+    <div class="m-card"><span class="m-sec">${mt("buyer")}</span>
+    <div class="m-grid">${fld(mt("billTo"),"María López")}${fld(mt("email"),"maria.lopez@email.com")}${fld(mt("idType"),mt("missing"),1,"draft:4")}${fld(mt("idNum"),mt("missing"),1)}${fld(mt("country"),mt("spain"))}${fld("CP","28013")}</div></div>
+    <div class="m-card"><span class="m-sec">${mt("stay")}</span><div class="m-grid">${fld(mt("listing"),"Apartamento Sol")}${fld(mt("dates"),mt("datesV"))}</div></div>
+  </div>`;
+const phone=()=>{const P=mt("ph");return `<div class="phone"><div class="ph-screen"><div class="ph-status"><span>9:41</span><span class="ph-notch"></span><span>●●</span></div>
+  <div class="ph-body"><span class="ph-h">${P.t}</span><p class="ph-p">${P.p}</p>
+  <div class="ph-f"><span>${P.name}</span><b>María López</b></div><div class="ph-f"><span>${P.idType}</span><b>${P.idTypeV}</b></div>
+  <div class="ph-f focus"><span>${P.idNum}</span><b>12345678Z</b></div><div class="ph-f"><span>${P.addr}</span><b>${P.addrV}</b></div>
+  <span class="ph-btn">${P.send}</span></div></div></div>`;};
+const shot=(img,hots,extra="")=>`<div class="browser"><div class="b-bar"><span class="b-dots"><i></i><i></i><i></i></span><span class="b-nav">‹ ›</span><span class="b-url">app.yourpms.com</span></div><div class="shot"><img src="img/${img}.png" alt="" loading="lazy">${hots.map(h=>`<i class="hot" data-anno="${h[0]}" style="left:${h[1]}%;top:${h[2]}%;width:${h[3]}%;height:${h[4]}%"></i>`).join("")}</div></div>${extra}`;
+const NI=(n,o={})=>`<span class="n-ni${o.on?" on":""}${o.sub?" n-sb":""}">${o.sub?"":"<i></i>"}<em>${n}</em>${o.badge?`<u class="n-cnt">${o.badge}</u>`:""}${o.isNew?`<u class="n-new">New</u>`:""}${o.ch?`<s>${o.ch}</s>`:""}</span>`;
+const nSide=()=>`<div class="n-side">${NI("Overview")}${NI("Calendar")}${NI("Reservations",{ch:"›"})}${NI("Smart locks & devices")}${NI("Inbox",{badge:1,ch:"›"})}${NI("Tasks",{ch:"›"})}${NI("Upsells",{ch:"›"})}${NI("Reviews")}${NI("Guest payments",{ch:"⌄"})}${NI("Charges",{sub:1})}${NI("Auto-payments",{sub:1})}${NI("Invoices",{sub:1,on:1})}${NI("Document templates",{sub:1})}${NI("Financial reporting")}${NI("Owner statements",{isNew:1})}${NI("Listings",{ch:"›"})}${NI("Channel manager",{ch:"›"})}${NI("User management",{ch:"›"})}${NI("Booking engine",{ch:"›"})}
+  <span class="n-refer">🎁 Refer and Earn!</span><span class="n-social"><b></b><b></b><i>𝕏</i><i>f</i><i>in</i><i>◎</i></span></div>`;
+const nTop=()=>`<div class="n-top"><span class="n-burger"><i></i><i></i><i></i></span><span class="n-tr"><span class="n-srch">Search<i></i></span><span class="n-ic"><u>6</u></span><span class="n-ic bell"><u>23</u></span><span class="n-help">? Need help?</span><span class="n-av"></span></span></div>`;
+const nApp=(main,extra="")=>browser(`<div class="mock n-mock"><div class="n-app">${nSide()}<div class="n-main">${nTop()}<div class="n-page">${main}</div></div></div>${extra}</div>`);
+const nBtn=(t,cls="")=>`<span class="n-btn ${cls}">${t}</span>`;
+const nHead=(crumb,title,btns)=>`<div class="n-head"><div><span class="n-crumb">‹ ${crumb}</span><span class="n-title">${title}</span></div><div class="n-btns">${btns}</div></div>`;
+const nSteps=(steps,on)=>`<div class="n-steps">${steps.map(x=>`<span${x===on?' class="on"':""}>${x}</span>`).join("")}</div>`;
+const nFld=(l,v,o={})=>`<label class="n-fld${o.w?" "+o.w:""}"><span>${l}</span><b${o.sel?' class="sel"':""}>${v}</b>${o.help?`<small>${o.help}</small>`:""}</label>`;
+const SF=["Country","Invoice submission","Seller’s information","VeriFactu connection"];
+const N={
+  sellers:()=>{const st={reg:"Registered",ok:"Completed",pr:"Processing",rj:"Rejected",er:"Error",dr:"Draft"};
+    const R=[["Sofía Martínez","Spain","Yes","VeriFactu","reg"],["Valentina Gómez","Spain","No","None","ok"],["Luciana Herrera","Italy","No","None","ok"],["Mateo López","Spain","Yes","VeriFactu","ok"],["Camila Torres","Spain","Yes","VeriFactu","pr"],["Andrés Pérez","Spain","Yes","VeriFactu","rj"],["Isabella Sánchez","Spain","Yes","VeriFactu","er"],["Nicolás Díaz","Spain","No","None","ok"],["Diego Rodríguez","Spain","No","None","ok"],["Sebastián Castro","Spain","Yes","VeriFactu","dr"]];
+    return nApp(nHead("Invoices","Settings","")+`<div class="n-tabsrow"><div class="n-tabs"><span>Invoice settings</span><span class="on">Sellers</span><span>Templates</span></div><div class="n-btns">${nBtn("Add template")}${nBtn("Add seller")}${nBtn("+ Add invoice settings","p")}</div></div>
+    <div class="n-tbar">${nBtn("Filters","s")}<span class="n-srch2">Search</span></div>
+    <div class="n-tbl"><div class="n-tr h"><span>Seller name</span><span>Tax ID</span><span>Country</span><span>Submission</span><span>Provider</span><span>Status</span><span></span></div>
+    ${R.map(r=>`<div class="n-tr"><b>${r[0]}</b><span>87198237918273</span><span>${r[1]}</span><span>${r[2]}</span><span>${r[3]}</span><span class="n-st ${r[4]}">${st[r[4]]}</span><span class="n-act${["reg","pr","rj","er"].includes(r[4])?" n-dim":""}"><i>✎</i><i>✕</i></span></div>`).join("")}</div>
+    <div class="n-pag"><span>‹</span><span class="on">1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>…</span><span>10</span><span>›</span></div>`);},
+  submission:()=>nApp(nHead("Settings","Sofía - VeriFactu",nBtn("✎ Edit","n-off"))+`<div class="n-split">${nSteps(SF,SF[1])}<div class="n-sec"><span class="n-h2">Invoice submission</span><span class="n-p">Will the invoices be submitted to Agencia Tributaria using VeriFactu?</span>
+    <div class="n-radio on"><i></i><b>Yes</b><span>Once they are closed, we’ll send the invoices automatically to the Agencia Tributaria using VeriFactu.</span></div>
+    <div class="n-radio"><i></i><b>No</b><span>You will handle the submission to the Agencia Tributaria on your own.</span></div></div></div>`),
+  sellerinfo:()=>nApp(nHead("Settings","Sofía - VeriFactu",nBtn("✎ Edit","n-off"))+`<div class="n-split">${nSteps(SF,SF[2])}<div class="n-sec"><span class="n-h2">Seller’s information</span><span class="n-p">The seller’s full details.</span>
+    <div class="n-form">${nFld("Name","Sofía Martínez")}${nFld("Tax ID","91716271",{sel:1,help:"Can't be edited once the seller is created"})}${nFld("Address","Avinguda Diagonal, 124")}${nFld("City","Barcelona")}<div class="n-pair">${nFld("ZIP code","08021")}${nFld("State","Catalunya")}</div>${nFld("Country","Spain",{sel:1,help:"Can't be edited once the seller is created"})}${nFld("Phone","+34 600 123 456")}${nFld("E-mail","sofia.martinez@email.com")}</div></div></div>`),
+  connection:()=>nApp(nHead("Settings","Sofía - VeriFactu",nBtn("✎ Edit","n-off"))+`<div class="n-split">${nSteps(SF,SF[3])}<div class="n-sec"><span class="n-h2">VeriFactu connection</span>
+    <div class="n-conn"><div class="n-conn-l"><span class="vf">VERI<i>✻</i>FACTU</span><span class="ln"></span><span class="dots"><i></i><i></i><i></i></span></div><b>The connection is in progress!</b><span>The connection to VeriFactu can take up to 72 hours.<br>We’ll notify you once the connection is done.</span></div></div></div>`),
+  country:()=>nApp(nHead("Settings","Sofía - VeriFactu",nBtn("✎ Edit","n-off"))+`<div class="n-split">${nSteps(SF,SF[0])}<div class="n-sec"><span class="n-h2">Country</span><span class="n-p">The country where this seller is registered.</span><div class="n-form one">${nFld("Country","Spain",{sel:1})}</div></div></div>`,`<span class="n-tip">You can’t edit this seller because it was already connected to VeriFactu.</span>`)
+};
+const win=(src,url="app.yourpms.com")=>`<div class="win"><div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span><span class="win-url">${url}</span><span></span></div><img src="img/${src}.png" alt="" loading="lazy"></div>`;
+const laptop=(src)=>`<div class="lap"><div class="lap-scr"><span class="lap-notch"></span><div class="lap-menu"><span>●</span><span>Safari</span><span>File</span><span>Edit</span><span>View</span><span class="r">Wed 18 Nov 10:24</span></div>${win(src)}</div></div>`;
+const dev=(src,cls="",lab="")=>`<div class="dev ${cls}">${lab?`<span class="dev-l">${lab}</span>`:""}<img src="img/${src}.png" alt="" loading="lazy"></div>`;
+const fig=(c,f)=>`<figure class="mont ${f[0]}" style="--c:${c.color}" aria-hidden="true">${f[1].map(d=>dev(d[0],d[1],d[2]||"")).join("")}</figure>${f[2]?`<p class="figcap">${f[2]}</p>`:""}`;
+const zoom=(html,w,l,t)=>`<div class="bc-in"><div class="zw" style="width:${w}%;left:${l}%;top:0;margin-top:${t}%">${html}</div></div>`;
+const MOCKS={
+  
+  draft:()=>browser(app(draftBody())),
+  mode:()=>browser(app(head(mt("setT"),mt("addCo"),`<span class="m-btn">← ${mt("prev")}</span><span class="m-btn p">${mt("next")} →</span>`)+`<div class="m-body">
+    <div class="m-info" data-anno="mode:1">${mt("locked")}</div>
+    <span class="m-q">${mt("q")}</span>
+    <div class="m-radio on" data-anno="mode:2"><i></i><span>${mt("yes")}<small>${mt("yesS")}</small></span></div>
+    <div class="m-radio"><i></i><span>${mt("no")}<small>${mt("noS")}</small></span></div></div>`)),
+  sellers:()=>shot("sellers",[["sellers:1",67.5,27.6,3.5,1.4],["sellers:2",79.3,52.1,5.3,1.5],["sellers:3",85.7,14.4,12.6,3.3]]),
+  mode:()=>shot("submission",[["mode:1",36.3,22.5,49,2],["mode:2",92.6,8.3,5.7,3.3],["mode:3",18.3,29.6,14.9,4.9]]),
+  sellerForm:()=>shot("sellerinfo",[["sellerForm:1",57.2,28.1,14.4,1.4]],`<div class="shot-card" data-anno="sellerForm:2"><img src="img/connection-card.png" alt=""></div>`),
+  close:()=>browser(app(draftBody("close")).replace(/<\/div>$/,`<div class="m-overlay"><div class="m-modal"><span class="m-q">${mt("closeT")}</span><p data-anno="close:1">${mt("closeP1")}</p><p>${mt("closeP2")}</p>
+    <div class="m-actions"><span class="m-btn">${mt("cancel")}</span><span class="m-btn p">${mt("closeSubmit")}</span></div></div></div></div>`))
+};
+const plate=(c,k)=>`<figure class="plate" style="--c:${c.color}"><div class="plate-in" data-plate="${k}" aria-hidden="true">${MOCKS[k]()}</div><ol class="anno-list">${mt("an")[k].map((t,i)=>`<li><span class="mk">${i+1}</span><span>${t}</span></li>`).join("")}</ol></figure>`;
+function placeMarkers(root){
+  root.querySelectorAll(".plate-in").forEach(pl=>{
+    pl.querySelectorAll(".mk.abs,.mk-line").forEach(m=>m.remove());
+    const k=pl.dataset.plate, pr=pl.getBoundingClientRect(), br=pl.querySelector(".browser").getBoundingClientRect();
+    const gL=(br.left-pr.left)/2, gR=(pr.right-br.right)/2, used={};
+    pl.querySelectorAll(`[data-anno^="${k}:"]`).forEach(el=>{
+      const r=el.getBoundingClientRect(), n=el.dataset.anno.split(":")[1];
+      const right=(r.left+r.width/2-pr.left)>pr.width/2;
+      let y=r.top-pr.top+Math.min(r.height/2,18); y=Math.max(18,Math.min(pr.height-18,y));
+      const side=right?"R":"L"; while(used[side]&&used[side].some(v=>Math.abs(v-y)<30)) y+=30; (used[side]=used[side]||[]).push(y);
+      const mx=right?pr.width-gR:gL, ex=right?r.right-pr.left+4:r.left-pr.left-4;
+      const ln=document.createElement("span"); ln.className="mk-line"+(right?" r":"");
+      ln.style.top=y+"px"; ln.style.left=Math.min(mx,ex)+"px"; ln.style.width=Math.abs(ex-mx)+"px"; pl.appendChild(ln);
+      const m=document.createElement("span"); m.className="mk abs"; m.textContent=n; m.style.left=(mx-13)+"px"; m.style.top=(y-13)+"px"; pl.appendChild(m);
+    });
+  });
+}
+addEventListener("resize",()=>{const r=document.getElementById("case"); if(r&&!r.hidden) placeMarkers(r);});
+const cover=(c,cls="",m)=>{const k=m||c.mock; if(k==="hero") return `<div class="cover comp lapc ${cls}" style="--c:${c.color}" aria-hidden="true">${laptop(c.heroImg||"hero")}</div>`; return k&&MOCKS[k]?`<div class="cover comp ${cls}" style="--c:${c.color}" aria-hidden="true">${MOCKS[k]()}${k==="draft"?phone():""}</div>`:coverGeneric(c,cls);};
+function flowText(){const F=mt("ft");
+  return `<div class="fstates"><span class="fo">${F.stT}</span><div>${F.st.map(x=>`<span>${x}</span>`).join("<i>→</i>")}</div></div>`;}
+function setupSvg(){
+  const F=mt("fs"), W=1440;
+  const tx=(x,y,lines,fs,fill,weight)=>`<text x="${x}" text-anchor="middle" fill="${fill}" font-size="${fs}"${weight?` font-weight="${weight}"`:""}>${lines.map((l,i)=>`<tspan x="${x}" y="${y+(i-(lines.length-1)/2)*(fs*1.2)}">${l}</tspan>`).join("")}</text>`;
+  const node=(cx,cy,lines,o={})=>{const w=o.w||200,h=o.h||60,x=cx-w/2,y=cy-h/2;
+    const fill=o.end?"var(--accent)":o.ghost?"transparent":"var(--surface)", st=o.end?"var(--accent)":o.acc?"color-mix(in srgb,var(--accent) 70%,transparent)":o.ghost?"var(--muted)":"var(--line)", ink=o.end?"var(--accent-ink)":o.ghost?"var(--muted)":"var(--ink)";
+    return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" fill="${fill}" stroke="${st}" stroke-width="1.5"${o.ghost?' stroke-dasharray="6 5"':""}/>${tx(cx,cy+(o.sub?-8:0)+6,lines,16,ink,500)}${o.sub?tx(cx,cy+20,[o.sub],12.5,o.end?"var(--accent-ink)":"var(--muted)"):""}`;};
+  const ar=(d,dash)=>`<path d="${d}" fill="none" stroke="var(--muted)" stroke-width="1.6"${dash?' stroke-dasharray="5 5"':""} marker-end="url(#ah2)"/>`;
+  const lab=(x,y,t,c,anchor)=>`<text x="${x}" y="${y}" fill="${c||"var(--muted)"}" font-size="14" font-weight="500"${anchor?` text-anchor="${anchor}"`:""}>${t}</text>`;
+  const mono=(x,y,t)=>`<text x="${x}" y="${y}" fill="var(--muted)" font-size="12.5" font-family="var(--mono)" letter-spacing=".04em">${t}</text>`;
+  return `<div class="flow-svg"><svg viewBox="0 0 ${W} 430" role="img" aria-label="${F.grp}">
+  <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+  <rect x="610" y="20" width="815" height="390" rx="16" fill="color-mix(in srgb,var(--accent) 6%,transparent)" stroke="color-mix(in srgb,var(--accent) 35%,transparent)" stroke-dasharray="4 6"/>
+  ${mono(634,48,F.grp)}
+  ${mono(30,62,F.o1)}${mono(30,282,F.o2)}
+  ${node(130,120,F.a1)}${node(375,120,F.a2)}
+  ${node(130,340,F.b1)}${node(375,340,F.b2)}
+  ${ar("M230,120 H271")}${ar("M475,120 H560 V215 H641")}
+  ${ar("M230,340 H271")}${ar("M475,340 H560 V245 H641")}
+  ${node(740,230,F.c1,{acc:1,w:190})}
+  <polygon points="935,182 1025,230 935,278 845,230" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.5"/>${tx(935,236,F.d,14,"var(--ink)",500)}
+  ${ar("M835,230 H841")}
+  ${ar("M935,182 V110 H1013")}${lab(947,150,F.no)}
+  ${ar("M935,278 V350 H1013",1)}${lab(947,320,F.yes,"var(--accent)")}
+  ${node(1120,110,F.t1,{w:210})}${node(1120,350,F.t2,{w:210,ghost:1})}
+  ${ar("M1225,110 H1300 V196")}${ar("M1225,350 H1300 V266")}
+  <rect x="1215" y="200" width="200" height="62" rx="10" fill="var(--accent)"/>${tx(1315,226,F.end,16,"var(--accent-ink)",600)}${tx(1315,248,[F.ends],12,"var(--accent-ink)")}
+  </svg></div>`;
+}
+function flowSvg(){
+  const F=mt("fl"), L=mt("lanes"), W=1440, LY=[30,150,270,390], LH=120;
+  const tx=(x,y,lines,fs,fill,weight)=>`<text x="${x}" text-anchor="middle" fill="${fill}" font-size="${fs}"${weight?` font-weight="${weight}"`:""}>${lines.map((l,i)=>`<tspan x="${x}" y="${y+(i-(lines.length-1)/2)*(fs*1.2)}">${l}</tspan>`).join("")}</text>`;
+  const node=(cx,cy,lines,sub,kind)=>{const w=190,h=sub?66:56,x=cx-w/2,y=cy-h/2;
+    const fill=kind==="end"?"var(--accent)":"var(--surface)", st=kind==="end"?"var(--accent)":kind==="acc"?"color-mix(in srgb,var(--accent) 70%,transparent)":"var(--line)", ink=kind==="end"?"var(--accent-ink)":"var(--ink)";
+    return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" fill="${fill}" stroke="${st}" stroke-width="1.5"/>${tx(cx,cy+(sub?-6:0)+6,lines,17,ink,500)}${sub?tx(cx,cy+21,[sub],13,kind==="end"?"var(--accent-ink)":"var(--muted)"):""}`;};
+  const dia=(cx,cy,lines)=>`<polygon points="${cx},${cy-42} ${cx+78},${cy} ${cx},${cy+42} ${cx-78},${cy}" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.5"/>${tx(cx,cy+6,lines,15,"var(--ink)",500)}`;
+  const ar=(d,dash)=>`<path d="${d}" fill="none" stroke="var(--muted)" stroke-width="1.6"${dash?' stroke-dasharray="5 5"':""} marker-end="url(#ah)"/>`;
+  const lab=(x,y,t,c)=>`<text x="${x}" y="${y}" fill="${c||"var(--muted)"}" font-size="14" font-weight="500">${t}</text>`;
+  const lanes=L.map((n,i)=>`<rect x="0" y="${LY[i]}" width="${W}" height="${LH}" fill="${i%2?"var(--bg)":"var(--surface)"}"/><line x1="0" x2="${W}" y1="${LY[i]}" y2="${LY[i]}" stroke="var(--line)"/><text x="24" y="${LY[i]+LH/2+5}" fill="var(--muted)" font-size="13" font-family="var(--mono)" letter-spacing=".04em">${n.toUpperCase()}</text>`).join("")+`<line x1="0" x2="${W}" y1="510" y2="510" stroke="var(--line)"/><line x1="170" x2="170" y1="30" y2="510" stroke="var(--line)"/>`;
+  const chip=(x,t,kind)=>{const w=t.length*8.6+28,c=kind==="err"?"#F2918A":kind==="ok"?"#7FD3A0":"var(--accent)";return `<rect x="${x-w/2}" y="548" width="${w}" height="30" rx="15" fill="var(--bg)" stroke="${c}" stroke-width="1.5"/><text x="${x}" y="568" text-anchor="middle" fill="${c}" font-size="14" font-weight="600">${t}</text>`;};
+  const st=F.st;
+  return `<div class="flow-svg"><svg viewBox="0 0 ${W} 600" role="img" aria-label="${L.join(", ")}">
+  <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+  ${lanes}
+  ${ar("M345,330 H460 V243")}
+  ${ar("M555,210 H582")}
+  ${ar("M660,168 V160 H460 V181",1)}${lab(482,153,F.loop)}
+  ${ar("M660,252 V330 H733")}${lab(672,296,F.yes,"var(--accent)")}
+  ${ar("M925,330 H948")}
+  ${ar("M1030,288 V243")}${lab(1042,272,F.no)}
+  ${ar("M1030,182 V123")}
+  ${ar("M935,90 H830 V301",1)}
+  ${ar("M1108,330 H1200 V246")}${lab(1120,320,F.yes,"var(--accent)")}
+  ${ar("M1295,210 H1360 V295")}
+  ${ar("M1360,358 V413")}
+  ${node(250,330,F.p1,F.p1s,"acc")}${node(460,210,F.a1)}${dia(660,210,F.d1)}${node(830,330,F.p2,"","acc")}${dia(1030,330,F.d2)}
+  ${node(1030,210,F.a3)}${node(1030,90,F.h1)}${node(1200,210,F.a4,F.a4s)}
+  <rect x="1290" y="304" width="140" height="56" rx="10" fill="var(--surface)" stroke="color-mix(in srgb,var(--accent) 70%,transparent)" stroke-width="1.5"/>${tx(1360,336,F.p3.length===1&&F.p3[0].length>14?[F.p3[0].split(" ").slice(0,1).join(" "),F.p3[0].split(" ").slice(1).join(" ")]:F.p3,15,"var(--ink)",500)}
+  <rect x="1270" y="416" width="160" height="70" rx="10" fill="var(--accent)"/>${tx(1350,445,F.s1[0].length>16?[F.s1[0].split(" ").slice(0,1).join(" "),F.s1[0].split(" ").slice(1).join(" ")]:F.s1,15,"var(--accent-ink)",600)}${tx(1350,476,[F.s1s],12,"var(--accent-ink)")}
+  <text x="24" y="568" fill="var(--muted)" font-size="13" font-family="var(--mono)" letter-spacing=".04em">${F.stTitle.toUpperCase()}</text>
+  <line x1="200" x2="1400" y1="563" y2="563" stroke="var(--line)" stroke-dasharray="3 5"/>
+  ${chip(400,st[0])}${chip(1030,st[1],"err")}${chip(1200,st[2])}${chip(1360,st[3],"ok")}
+  </svg></div>`;
+}
+
+function renderList(){
+  document.getElementById("caseList").innerHTML=CASES.map((c,i)=>`
+  <li><a class="work-card" href="#${c.id}">
+    ${cover(c)}
+    <div class="work-info">
+      <span class="n">${String(i+1).padStart(2,"0")}</span>
+      <div class="ttl"><h3>${L(c.title)}</h3><span class="label">${L(c.company)} — ${c.year} — ${c.role}</span></div>
+      <div class="desc"><p>${L(c.summary)}</p><div class="kpis">${L(c.kpis).map(k=>`<span><b>${k[0]}</b> ${k[1]}</span>`).join("")}</div></div>
+      <span class="more">${t("more")}</span>
+    </div>
+  </a></li>`).join("");
+}
+
+const SEC_IDS=["problema","rol","proceso","decisiones","ia","resultado","aprendizajes"];
+function renderArc(c,BD){
+  const nx=CASES[(CASES.indexOf(c)+1)%CASES.length], A=BD.arc;
+  const res=BD.results.map(r=>`<div><b>${r[0]}</b><small>${r[1]}</small></div>`).join("");
+  const sec=(id,n,l,h,body)=>`<div class="cs-sec arc" id="${id}"><span class="arc-l"><em>${n}</em>${l}</span><h2>${h}</h2>${body}</div>`;
+  return `<section class="wrap grid cs-hero">
+    <a class="back" href="#trabajo">${t("back")}</a>
+    <h1>${L(c.title)}</h1><p>${L(c.summary)}</p>
+    <div class="results top">${res}</div>
+    <div class="facts">
+      <div><span class="label">${t("fCompany")}</span><strong>${L(c.company)}</strong></div>
+      <div><span class="label">${t("fPeriod")}</span><strong>${c.year}</strong></div>
+      <div><span class="label">${t("fRole")}</span><strong>${c.role}</strong></div>
+      <div><span class="label">${t("fTeam")}</span><strong>${L(c.team)}</strong></div>
+    </div></section>
+  <section class="wrap cs-cover">${cover(c,"wide")}</section>
+  <section class="wrap grid cs-body">
+    <nav class="toc" aria-label="${t("tocAria")}">${[["contexto",A.ctxL],["historia",A.storyL],["resultado",A.resL]].concat(BD.ai?[["ia",t("sec").ia]]:[]).map(x=>`<a href="#${c.id}" data-target="${x[0]}">${x[1]}</a>`).join("")}</nav>
+    <div class="cs-content">
+      ${sec("contexto","01",A.ctxL,A.ctxH,`<div class="prose">${BD.sProbP}</div><div class="sub"><span class="label">${A.roleL}</span><p style="margin:0;max-width:var(--read)">${BD.sRoleP}</p></div>`)}
+      ${sec("historia","02",A.storyL,A.storyH,`<div class="prose">${A.storyP}</div>
+        <ol class="decisions">${BD.sDec.map((d,i)=>`<li><div class="dec-txt"><span class="pc-n">0${i+1}</span><strong>${d[0]}</strong><p>${d[1]}</p></div></li>`).join("")}</ol>
+        ${A.figStory?fig(c,A.figStory):fig(c,["m-side",[["f-listings","a"],["f-template","b"]]])}`)}
+      ${sec("resultado","03",A.resL,A.resH,`<p style="margin:0;max-width:var(--read)">${BD.sOutP}</p>
+        ${BD.quotes?`<div class="quotes">${BD.quotes.map(q=>`<blockquote><p>“${q[0]}”</p><cite>${q[1]}</cite></blockquote>`).join("")}</div>`:""}
+        ${A.figRes===false?"":A.figRes?fig(c,A.figRes):fig(c,["m-stack",[["duo-back","a"],["duo-front","b"]]])}`)}
+      ${BD.ai?`<div class="cs-sec" id="ia"><span class="label">${t("sec").ia}</span><h2>${BD.ai.h}</h2>
+        <div class="ai-rows">${BD.ai.rows.map(r=>`<div class="ai-row"><span class="ph">${r[0]}</span><div><p>${r[1]}</p></div><div class="tools">${r[2].map(x=>`<span class="tool">${x}</span>`).join("")}</div></div>`).join("")}</div></div>`:""}
+      <a class="next" href="#${nx.id}"><div><span class="label">${t("next")}</span><h3>${L(nx.title)}</h3></div><span>→</span></a>
+    </div></section>`;
+}
+function renderCase(c){
+  {const BD0=c.body?L(c.body):null; if(BD0&&BD0.arc) return renderArc(c,BD0);}
+  const nx=CASES[(CASES.indexOf(c)+1)%CASES.length], S=t("sec"), SUM=t("sum"), B=c.brief||{};
+  const BD=c.body?L(c.body):null, X=k=>(BD && BD[k]!==undefined)?BD[k]:t(k);
+  const res=(BD&&BD.results?BD.results:[0,1,2].map(()=>[t("pendingFig"),t("pendingRes")])).map(r=>`<div><b>${r[0]}</b><small>${r[1]}</small></div>`).join("");
+  const summary=["problem","role","decisions","outcome"].map(k=>`<div><span class="label">${SUM[k]}</span><p>${L(B[k])||t("sumPh")}</p></div>`).join("");
+  return `<section class="wrap grid cs-hero">
+    <a class="back" href="#trabajo">${t("back")}</a>
+    ${BD?"":`<span class="example">${t("pending")}</span>`}
+    <h1>${L(c.title)}</h1><p>${L(c.summary)}</p>
+    <div class="facts">
+      <div><span class="label">${t("fCompany")}</span><strong>${L(c.company)}</strong></div>
+      <div><span class="label">${t("fPeriod")}</span><strong>${c.year}</strong></div>
+      <div><span class="label">${t("fRole")}</span><strong>${c.role}</strong></div>
+      <div><span class="label">${t("fTeam")}</span><strong>${L(c.team)}</strong></div>
+    </div></section>
+  <section class="wrap cs-cover">${cover(c,"wide")}</section>
+  <section class="wrap cs-sum" aria-label="${t("sumTitle")}">
+    <div class="sec-head"><h2>${t("sumTitle")}</h2></div>
+    <div class="summary">${summary}</div>
+  </section>
+  <section class="wrap grid cs-body">
+    <nav class="toc" aria-label="${t("tocAria")}">${SEC_IDS.filter(id=>(id!=="ia"||(BD&&BD.ai))&&(id!=="aprendizajes"||X("sLearnP"))).map(id=>`<a href="#${c.id}" data-target="${id}">${S[id]}</a>`).join("")}</nav>
+    <div class="cs-content">
+      <div class="cs-sec" id="problema"><span class="label">${S.problema}</span><h2>${X("sProbH")}</h2>
+        <div class="callout"><span class="label">${t("sProbL")}</span><strong>${X("sProbC")}</strong></div><div class="prose">${/^\s*</.test(X("sProbP"))?X("sProbP"):`<p>${X("sProbP")}</p>`}</div></div>
+      <div class="cs-sec" id="rol"><span class="label">${S.rol}</span><h2>${X("sRoleH")}</h2><p>${X("sRoleP")}</p>
+        ${X("sRoleList").length?`<ul class="clean">${X("sRoleList").map(r=>`<li>${r}</li>`).join("")}</ul>`:""}</div>
+      <div class="cs-sec" id="proceso"><span class="label">${S.proceso}</span><h2>${X("sProcH")}</h2>
+        <div class="sub"><span class="label">${t("sJtbdL")}</span><div class="jtbd">${X("sJtbd").map(j=>`<div>${j}</div>`).join("")}</div></div>
+        <div class="sub"><span class="label">${t("sResL")}</span>${BD&&BD.sResP?`<p style="margin:0">${BD.sResP}</p>`:""}<ul class="clean">${X("sRes").map(r=>`<li>${r}</li>`).join("")}</ul></div>${BD&&BD.quotes?`<div class="sub"><span class="label">${BD.quotesL}</span><div class="quotes">${BD.quotes.map(q=>`<blockquote><p>“${q[0]}”</p><cite>${q[1]}</cite></blockquote>`).join("")}</div></div>`:""}
+        <div class="sub"><span class="label">${t("sFlowL")}</span>${c.flowSvg?flowText():`<div class="flow">${X("sFlow").map(s=>`<span>${s}</span>`).join("<i>→</i>")}</div>`}<p>${X("sFlowP")}</p></div>${BD&&BD.v1P?`<div class="sub"><span class="label">${BD.v1L}</span><div class="prose">${BD.v1P}</div></div>`:""}</div>
+      <div class="cs-sec" id="decisiones"><span class="label">${S.decisiones}</span><h2>${X("sDecH")}</h2>
+        ${BD&&BD.solIntro?`<p class="lead-p">${BD.solIntro}</p>
+        <figure class="mont m-side" style="--c:${c.color}" aria-hidden="true">${dev("f-listings","a")}${dev("f-template","b")}</figure>
+        <span class="label" style="margin-top:32px">${BD.decL}</span>`:""}
+        <ol class="decisions">${X("sDec").map((d,i)=>`<li><div class="dec-txt"><span class="pc-n">0${i+1}</span><strong>${d[0]}</strong><p>${d[1]}</p></div></li>`).join("")}</ol>
+        ${BD&&BD.solIntro?`<figure class="mont m-stack" style="--c:${c.color}" aria-hidden="true">${dev("duo-back","a")}${dev("duo-front","b")}</figure>`:`<figure>${cover(c,"fig")}<figcaption>${X("sSolCap")}</figcaption></figure>`}</div>
+      ${BD&&BD.ai?`<div class="cs-sec" id="ia"><span class="label">${S.ia}</span><h2>${BD.ai.h}</h2><p class="lead-p">${BD.ai.intro}</p>
+        <div class="ai-rows">${BD.ai.rows.map(r=>`<div class="ai-row"><span class="ph">${r[0]}</span><div><p>${r[1]}</p></div><div class="tools">${r[2].map(x=>`<span class="tool">${x}</span>`).join("")}</div></div>`).join("")}</div>
+        <div class="callout"><span class="label">${BD.ai.critT}</span><strong>${BD.ai.crit}</strong></div></div>`:""}
+      <div class="cs-sec" id="resultado"><span class="label">${S.resultado}</span><h2>${X("sOutH")}</h2><div class="results">${res}</div><p>${X("sOutP")}</p>
+        ${BD&&BD.kpis?`<div class="sub"><span class="label">${BD.kpiT}</span><div class="kpi-rows">${BD.kpis.map(k=>`<div><span>${k[0]}</span><em>${k[1]}</em><b>${k[2]}</b></div>`).join("")}</div></div>`:""}</div>
+      ${X("sLearnP")?`<div class="cs-sec" id="aprendizajes"><span class="label">${S.aprendizajes}</span><h2>${X("sLearnH")}</h2><p>${X("sLearnP")}</p></div>`:""}
+      <a class="next" href="#${nx.id}"><div><span class="label">${t("next")}</span><h3>${L(nx.title)}</h3></div><span>→</span></a>
+    </div></section>`;
+}
+
+const home=document.getElementById("home"), cs=document.getElementById("case");
+let spy;
+function showCase(c,keepScroll){
+  cs.innerHTML=renderCase(c); cs.hidden=false; home.hidden=true; if(!keepScroll) window.scrollTo(0,0);
+  cs.querySelectorAll(".toc a").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();document.getElementById(a.dataset.target).scrollIntoView({behavior:"smooth"})}));
+  spy&&spy.disconnect();
+  spy=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)cs.querySelectorAll(".toc a").forEach(a=>a.classList.toggle("on",a.dataset.target===en.target.id))}),{rootMargin:"-30% 0px -60% 0px"});
+  cs.querySelectorAll(".cs-sec").forEach(s=>spy.observe(s));
+  requestAnimationFrame(()=>placeMarkers(cs)); setTimeout(()=>placeMarkers(cs),400); document.fonts&&document.fonts.ready.then(()=>placeMarkers(cs));
+}
+function route(){
+  const h=location.hash.slice(1), c=CASES.find(x=>x.id===h);
+  if(c) showCase(c,false);
+  else { cs.hidden=true; home.hidden=false; if(h){const el=document.getElementById(h); el&&el.scrollIntoView();} }
+}
+
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{el.innerHTML=t(el.dataset.i18n)});
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{el.placeholder=t(el.dataset.i18nPh)});
+  document.querySelectorAll("[data-i18n-aria]").forEach(el=>{el.setAttribute("aria-label",t(el.dataset.i18nAria))});
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
+  renderList();
+  const c=CASES.find(x=>x.id===location.hash.slice(1)); if(c && !cs.hidden) showCase(c,true);
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>{
+  lang=b.dataset.lang; try{localStorage.setItem("lang",lang)}catch(e){} applyLang();
+}));
+
+applyLang();
+addEventListener("hashchange",route); route();
+
+/* ---------- menú móvil ---------- */
+const menuBtn=document.getElementById("menuBtn"), mainNav=document.getElementById("mainNav");
+function setMenu(open){mainNav.classList.toggle("open",open); menuBtn.setAttribute("aria-expanded",String(open));}
+menuBtn.addEventListener("click",()=>setMenu(!mainNav.classList.contains("open")));
+mainNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+
+/* el botón flotante aparece al hacer scroll y se oculta al llegar al contacto */
+const fabEl=document.getElementById("fab"); let nearFooter=false;
+const fabUpdate=()=>fabEl.classList.toggle("away",nearFooter||scrollY<320);
+addEventListener("scroll",fabUpdate,{passive:true}); fabUpdate();
+new IntersectionObserver(es=>es.forEach(en=>{nearFooter=en.isIntersecting;fabUpdate();}),{threshold:0.15}).observe(document.getElementById("contacto"));
+
+/* ---------- agente ---------- */
+const agent=document.getElementById("agent"), log=document.getElementById("log"), fab=document.getElementById("fab"), qIn=document.getElementById("q");
+let sampleFn=null, history=[], busy=false, greeted=false;
+try{ window.claude?.use?.("sample").then(s=>{sampleFn=s}).catch(()=>{}); }catch(e){}
+
+function add(text,who){const d=document.createElement("div"); d.className="msg "+who; d.textContent=text; log.appendChild(d); log.scrollTop=log.scrollHeight; return d;}
+function openAgent(q){
+  agent.hidden=false; fab.hidden=true;
+  if(!greeted){ greeted=true;
+    add(t("hello"),"bot");
+    const s=document.createElement("div"); s.className="sugg";
+    t("sugg").forEach(x=>{const b=document.createElement("button"); b.className="chip"; b.type="button"; b.textContent=x; b.onclick=()=>ask(x); s.appendChild(b)});
+    log.appendChild(s);
+  }
+  if(q) ask(q); else qIn.focus();
+}
+function closeAgent(){agent.hidden=true; fab.hidden=false;}
+document.querySelectorAll("[data-open-agent]").forEach(b=>b.addEventListener("click",()=>openAgent()));
+document.getElementById("closeAgent").onclick=closeAgent;
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!agent.hidden)closeAgent()});
+document.getElementById("askForm").addEventListener("submit",e=>{e.preventDefault(); const q=qIn.value.trim(); if(q){qIn.value=""; ask(q);}});
+
+const FALLBACK={
+es:[
+  [/\bia\b|\bai\b|inteligencia|claude|cursor|mcp|prototip/i,"Para Julia la IA es una herramienta fundamental en todo el proceso de diseño: analiza con ella los resultados de entrevistas y tests de usabilidad, mejora el UX writing y prepara prototipos interactivos para validar ideas. En Hostaway introdujo estas prácticas en el flujo de todo el equipo."],
+  [/experien|años|trayectoria|senior|empresa|hostaway|gibobs/i,"Julia tiene más de 5 años de experiencia en SaaS y fintech. En Hostaway (2023–2026) empezó como única diseñadora de seis áreas y se especializó en Pagos y compliance; antes, en Gibobs (2021–2023), creó un sistema de diseño desde cero."],
+  [/proyect|caso|primero|ver|portfolio/i,"Si te interesan los flujos complejos con requisitos legales, empieza por la facturación en tres países. Si buscas producto y negocio, mira la booking website. Si te interesa cómo usa la IA en equipo, mira el caso de las skills de IA."],
+  [/research|investig|jtbd|jobs|test|usabil|entrevista|trabaja|proceso/i,"Empieza por la investigación: entre 10 y 15 entrevistas y tests de usabilidad por proyecto, y talleres de discovery con JTBD y journey mapping. Después diseña flujos y sistemas muy cerca de producto e ingeniería."],
+  [/herramient|figma|tool|github/i,"Trabaja con Figma, Claude Code, Cursor y GitHub, testea con Useberry y analiza con Hotjar, PostHog, Pendo y Google Analytics."],
+  [/contact|email|correo|cv|linkedin|disponib|busca|remot|dónde|donde/i,"Julia vive en Bilbao, está disponible y abierta a trabajar en remoto (EMEA). Puedes escribirle a juliabvinhas@gmail.com o por LinkedIn."]
+],
+en:[
+  [/\bai\b|artificial|claude|cursor|mcp|prototyp/i,"AI is a core tool in Julia's design process: she uses it to analyse interviews and usability tests, sharpen UX writing and build interactive prototypes to validate ideas. At Hostaway she brought these practices into the whole team's workflow."],
+  [/experien|years|background|senior|compan|hostaway|gibobs/i,"Julia has 5+ years of experience in SaaS and fintech. At Hostaway (2023–2026) she started as the only designer across six product areas and specialised in Payments and compliance; before that, at Gibobs (2021–2023), she built a design system from scratch."],
+  [/project|case|first|portfolio|see/i,"If you're interested in complex flows with legal requirements, start with invoicing in three countries. For product and business, see the booking website. For how she uses AI across a team, see the AI skills case."],
+  [/research|jtbd|jobs|test|usabil|interview|work|process/i,"She starts with research: 10–15 interviews and usability tests per project, plus discovery workshops with JTBD and journey mapping. Then she designs flows and systems in close partnership with product and engineering."],
+  [/tool|figma|github/i,"She works with Figma, Claude Code, Cursor and GitHub, tests with Useberry and analyses with Hotjar, PostHog, Pendo and Google Analytics."],
+  [/contact|email|cv|linkedin|availab|looking|remote|where|based/i,"Julia is based in Bilbao, available and open to remote work (EMEA). You can reach her at juliabvinhas@gmail.com or on LinkedIn."]
+]};
+function fallback(q){ for(const [re,a] of FALLBACK[lang]) if(re.test(q)) return a; return t("noData"); }
+
+async function ask(q){
+  if(busy) return; busy=true;
+  log.querySelector(".sugg")?.remove();
+  add(q,"me"); const out=add(t("thinking"),"bot typing");
+  let answer="";
+  if(sampleFn){
+    try{
+      const prompt=`Eres el asistente del portfolio de Julia Besada, product designer. Respondes a reclutadores y equipos de contratación.
+Reglas: usa solo la información del perfil; si algo no aparece, dilo y sugiere escribir a Julia. Habla de Julia en tercera persona. Máximo 3 frases, tono sobrio y directo, sin listas ni markdown. Responde en el idioma de la pregunta (la web está ahora en ${lang==="es"?"español":"inglés"}).
+
+PERFIL:
+${PROFILE}
+
+CONVERSACIÓN PREVIA:
+${history.slice(-6).map(m=>(m.r==="u"?"Visitante: ":"Asistente: ")+m.t).join("\n")||"(ninguna)"}
+
+PREGUNTA: ${q}`;
+      const r=await sampleFn(prompt,{cache:false,modelTier:"quick",onText:({text})=>{if(text){out.classList.remove("typing"); out.textContent=text; log.scrollTop=log.scrollHeight;}}});
+      answer=r.text;
+    }catch(e){ answer=""; }
+  }
+  if(!answer) answer=fallback(q);
+  out.classList.remove("typing"); out.textContent=answer;
+  history.push({r:"u",t:q},{r:"a",t:answer});
+  log.scrollTop=log.scrollHeight; busy=false;
+}
+</script>
+
+</html>
