@@ -1229,6 +1229,7 @@ new IntersectionObserver(es=>es.forEach(en=>{nearFooter=en.isIntersecting;fabUpd
 
 /* ---------- agente ---------- */
 const agent=document.getElementById("agent"), log=document.getElementById("log"), fab=document.getElementById("fab"), qIn=document.getElementById("q");
+const BOT_URL="https://portfolio-bot.juliabvinhas.workers.dev"; // Worker de Cloudflare
 let sampleFn=null, history=[], busy=false, greeted=false;
 try{ window.claude?.use?.("sample").then(s=>{sampleFn=s}).catch(()=>{}); }catch(e){}
 
@@ -1287,6 +1288,13 @@ ${history.slice(-6).map(m=>(m.r==="u"?"Visitante: ":"Asistente: ")+m.t).join("\n
 PREGUNTA: ${q}`;
       const r=await sampleFn(prompt,{cache:false,modelTier:"quick",onText:({text})=>{if(text){out.classList.remove("typing"); out.textContent=text; log.scrollTop=log.scrollHeight;}}});
       answer=r.text;
+    }catch(e){ answer=""; }
+  }
+  if(!answer && BOT_URL){
+    try{
+      const msgs=history.slice(-6).map(m=>({role:m.r==="u"?"user":"assistant",content:m.t})).concat([{role:"user",content:q}]);
+      const r=await fetch(BOT_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:msgs})});
+      if(r.ok){const d=await r.json(); answer=(d.answer||"").trim();}
     }catch(e){ answer=""; }
   }
   if(!answer) answer=fallback(q);
