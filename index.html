@@ -304,6 +304,7 @@ footer.contact .links{grid-column:1/-1;display:flex;gap:12px 32px;flex-wrap:wrap
 .arc-l{display:flex;gap:10px;align-items:baseline;font:500 12px var(--mono);color:var(--accent);letter-spacing:.04em;text-transform:uppercase}.arc-l em{font-style:normal;color:var(--muted)}
 .work-info h3{font-size:clamp(28px,3.2vw,44px)!important;letter-spacing:-.025em;text-wrap:balance}
 .work-info .kpis b{color:var(--accent);font-weight:500}
+.off li.off-i{display:flex;align-items:center;gap:14px}.off-e{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:22px;line-height:1;flex:none}
 .kpi-rows{display:grid;border-top:1px solid var(--line);max-width:820px}
 .kpi-rows div{display:grid;grid-template-columns:190px 110px minmax(0,1fr);gap:24px;align-items:baseline;padding-block:16px;border-bottom:1px solid var(--line)}.kpi-rows span{font-weight:500}.kpi-rows em{font:400 28px/1 var(--sans);font-style:normal;color:var(--accent);letter-spacing:-.02em;white-space:nowrap}@media (max-width:600px){.kpi-rows div{grid-template-columns:1fr;gap:4px}}
 .kpi-rows b{font-weight:400;color:var(--muted)}
@@ -586,10 +587,10 @@ ul.clean li::before,ul.bul li::before{content:"◇";position:absolute;left:0;top
   <section class="wrap block offs" id="fuera">
     <div class="sec-head"><h2 data-i18n="offTitle"></h2></div>
     <ul class="off">
-      <li><strong data-i18n="off1"></strong></li>
-      <li><strong data-i18n="off2"></strong></li>
-      <li><strong data-i18n="off3"></strong></li>
-      <li><strong data-i18n="off4"></strong></li>
+      <li class="off-i"><span class="off-e" aria-hidden="true">🏺</span><strong data-i18n="off1"></strong></li>
+      <li class="off-i"><span class="off-e" aria-hidden="true">🎬</span><strong data-i18n="off2"></strong></li>
+      <li class="off-i"><span class="off-e" aria-hidden="true">🧁</span><strong data-i18n="off3"></strong></li>
+      <li class="off-i"><span class="off-e" aria-hidden="true">✈️</span><strong data-i18n="off4"></strong></li>
     </ul>
   </section>
 </main>
